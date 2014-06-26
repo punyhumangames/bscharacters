@@ -1,0 +1,779 @@
+//====================================================
+//
+//	RYOKU REVERSE STANCE IDLE + RUN
+//
+//====================================================
+
+	$sequence r_idle "anim_r_idle"{
+		ACT_BB_R_IDLE 1
+		fps 60
+		loop
+		//cmdlist lockfeet
+		addlayer reverse_sword	
+	}
+
+	$Weightlist RyokuReverseRun {
+		"ValveBiped.Bip01_Pelvis" 0.1 
+		"ValveBiped.Bip01_L_Thigh" 0.0 
+		"ValveBiped.Bip01_R_Thigh" 0.0 
+		"ValveBiped.Bip01_Spine" 0.2
+		"ValveBiped.Bip01_Spine1" 0.7 
+		"ValveBiped.Bip01_Spine2" 0.9 
+		"ValveBiped.Bip01_Spine4" 0.9
+		"ValveBiped.Bip01_R_Clavicle" 0.4 
+		"ValveBiped.Bip01_L_Clavicle" 0.2 	
+		"ValveBiped.Bip01_R_UpperArm" 1.0	
+		"ValveBiped.Bip01_L_UpperArm" 0.7		
+		"ValveBiped.Bip01_R_ForeArm" 0.99	
+		"ValveBiped.Bip01_L_ForeArm" 0.2	
+		"ValveBiped.Bip01_Neck1" 1.0
+		"ValveBiped.Bip01_Head1" 1.0
+	}	
+	$sequence r_run_mod anim_r_run_upper { 
+		ACT_BB_R_RUN_UPPER 1
+		weightlist RyokuReverseRun	
+		addlayer reverse_sword	
+	} 
+	$animation a_r_RunZero "anim_r_idle" 
+	$animation a_r_ridle_base anim_r_idle frame 0 0
+	$animation a_r_run_base anim_r_run_upper_idle cmdlist ikrules_run_idle
+
+	$sequence r_run { 
+		a_RunNW_IK a_RunN_IK a_RunNE_IK
+		a_RunW_IK a_r_run_base a_RunE_IK 
+		a_RunSW_IK a_RunS_IK a_RunSE_IK 
+		blendwidth 3 blend move_y -1 1 blend move_x 1 -1 loop
+		addlayer r_run_mod
+		ACT_BB_R_RUN 1
+		{ event AE_BB_FOOTSTEP_SPLASH	6	"0" }
+		{ event AE_BB_FOOTSTEP_SPLASH	15	"1" }
+	}
+
+//====================================================
+//
+//	RYOKU IDLE TURNING
+//
+//====================================================	
+
+/* doesn't need turning!
+	$sequence r_turn_left {
+	anim_r_idle_turn_left_90
+	activity ACT_BB_R_TURN_LEFT 1
+	alignto r_idle
+	fps 70
+	//Weightlist lowerbody
+	LZR
+	loop
+	ikrule lfoot footstep range 3 52 54 53 height $STANDARD_IK_HEIGHT$ usesequence
+	ikrule rfoot footstep range 3 52 54 53 height $STANDARD_IK_HEIGHT$ usesequence
+	}
+*/
+	
+
+//====================================================
+//
+//	RYOKU REVERSE BLOCKING
+//
+//====================================================	
+
+/*
+$sequence r_block "anim_h_block"{ 
+	ACT_BB_R_BLOCK 1
+	fps 50
+	alignto r_idle
+}
+*/
+
+
+
+
+
+//	REVERSE STANCE ATTACKS
+//	TODO: Conform to new naming and cleanup!!
+
+//	combo 1 charge
+$sequence r_c1_charge "anim_r_c1_charge"{
+	ACT_BB_R_C1_CHARGE 1
+	alignto r_idle	
+	fps 50
+	addlayer reverse_sword	
+}
+
+//	combo 1 running charge
+$sequence r_c1_charge_running "anim_r_c1_charge_running" {
+	ACT_BB_R_C1_CHARGE_RUNNING 1
+	fps 50
+	weightlist SlowerUpperbodyBlend 
+	alignto r_idle 	
+	iklock lfoot 1 0 iklock rfoot 1 0 
+	addlayer reverse_sword			
+}
+
+
+
+//	combo 1 tiered attacks
+$animation a_r_c1_t1 "anim_r_c1_t1" frames 0 40
+$sequence	r_c1_t1 {
+	a_r_c1_t1
+	ACT_BB_R_C1_T1 1
+	fps 40
+	fadein 0.1	
+	alignto r_idle		
+	addlayer reverse_sword			
+	walkframe 2		LX
+	walkframe 5 	LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX	
+	walkframe 30	LX	
+	walkframe 35	LX	
+	walkframe 38	LX		
+	walkframe 40	LX				
+	{ event AE_CL_PLAYCHARACTERSOUND			3	".B_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND						3	"Weapon_Blade.Reverse" }	
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "follow_attachment anim_attachment_S" }		
+}
+
+$animation a_r_c1_t2 "anim_r_c1_t2" frames 0 40
+$sequence	r_c1_t2 {
+	a_r_c1_t2
+	ACT_BB_R_C1_T2 1
+	fps 60
+	alignto r_idle	
+	addlayer reverse_sword			
+	walkframe 2		LX
+	walkframe 5 	LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX	
+	walkframe 30	LX	
+	walkframe 35	LX	
+	walkframe 38	LX		
+	walkframe 40	LX				
+	{ event AE_CL_PLAYCHARACTERSOUND			5	".B_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND						3	"Weapon_Blade.Reverse" }			
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "follow_attachment anim_attachment_S" }
+}
+
+
+$animation a_r_c1_t3 "anim_r_c1_t3" frames 0 40
+$sequence	r_c1_t3 {
+	a_r_c1_t3
+	ACT_BB_R_C1_T3 1
+	fps 70	
+	alignto r_idle		
+	addlayer reverse_sword			
+	walkframe 2		LX
+	walkframe 5 	LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX	
+	walkframe 30	LX	
+	walkframe 35	LX	
+	walkframe 40	LX	
+	{ event AE_CL_PLAYCHARACTERSOUND			3	".B_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND						3	"Weapon_Blade.Reverse" }	
+	{ event AE_CL_PLAYSOUND						3	"Weapon_Effect.Lightning" }					
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 3 "player_lightning follow_origin" }		
+}
+
+
+
+
+
+//	combo 2 charge
+$sequence r_c2_charge "anim_r_c2_charge"{
+	ACT_BB_R_C2_CHARGE 1
+	alignto r_idle	
+	addlayer reverse_sword				
+	fps 50
+}
+
+//	combo 2 tiered attacks
+$animation a_r_c2_t1 "anim_r_c2_t1" frames 0 40
+$sequence	r_c2_t1 {
+	a_r_c2_t1
+	ACT_BB_R_C2_T1 1
+	fps 44	
+	alignto r_idle	
+	fadein 0.01	
+	addlayer reverse_sword			
+	walkframe 2		LX
+	walkframe 5 	LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX	
+	walkframe 30	LX	
+	walkframe 35	LX	
+	walkframe 39	LX	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".B_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND						0	"Weapon_Blade.Reverse" }			
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "follow_attachment anim_attachment_S" }
+}
+
+$animation a_r_c2_t2 "anim_r_c2_t2" frames 0 40
+$sequence	r_c2_t2 {
+	a_r_c2_t2
+	ACT_BB_R_C2_T2 1
+	fps 50
+	alignto r_idle	
+	addlayer reverse_sword			
+	walkframe 2		LX
+	walkframe 5 	LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX	
+	walkframe 30	LX	
+	walkframe 35	LX	
+	walkframe 39	LX	
+	{ event AE_CL_PLAYCHARACTERSOUND			5	".B_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND						0	"Weapon_Blade.Reverse" }				
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "follow_attachment anim_attachment_S" }
+}
+
+
+$animation a_r_c2_t3 "anim_r_c2_t3" frames 0 50
+$sequence	r_c2_t3 {
+	a_r_c2_t3
+	ACT_BB_R_C2_T3 1
+	fps 45
+	alignto r_idle	
+	addlayer reverse_sword			
+	walkframe 2		LX
+	walkframe 5 	LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX	
+	walkframe 30	LX	
+	walkframe 35	LX	
+	walkframe 40	LX	
+	walkframe 45	LX		
+	walkframe 50	LX		
+	{ event AE_CL_PLAYSOUND						0	"Player_Shared.WindImpact" }
+	{ event AE_CL_PLAYCHARACTERSOUND			10	".B_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND						3	"Weapon_Blade.Reverse" }				
+	{ event AE_CL_CREATE_SWORD_EFFECT 3 "follow_attachment anim_attachment_S" }	
+}
+
+
+
+//	combo 3 charge
+$sequence r_c3_charge "anim_r_c3_charge"{
+	ACT_BB_R_C3_CHARGE 1
+	fps 50	
+	alignto r_idle		
+	addlayer reverse_sword		
+	X Y
+	/*
+	walkframe 2		LX
+	walkframe 5 	LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX	
+	walkframe 25	LX	
+	walkframe 30	LX	
+	walkframe 36	LX	
+	*/
+}
+
+//	combo 3 tiered attacks
+$animation a_r_c3_t1 "anim_r_c3_t1" frames 0 48
+$sequence	r_c3_t1 {
+	a_r_c3_t1
+	ACT_BB_R_C3_T1 1
+	fps 45	
+	alignto r_idle	
+	fadein 0.1		
+	fadeout 0.1	
+	addlayer reverse_sword			
+	walkframe 2		LX
+	walkframe 5 	LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX	
+	walkframe 30	LX	
+	walkframe 35	LX	
+	walkframe 40	LX	
+	walkframe 45	LX	
+	walkframe 48	LX	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".B_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND						0	"Weapon_Blade.Reverse" }		
+}
+
+$animation a_r_c3_t2 "anim_r_c3_t2" frames 0 50
+$sequence	r_c3_t2 {
+	a_r_c3_t2
+	ACT_BB_R_C3_T2 1
+	fps 60
+	alignto r_idle	
+	addlayer reverse_sword			
+	walkframe 7		LX
+	walkframe 11	LX
+	walkframe 15	LX
+	walkframe 20	LX	
+	walkframe 31	LX
+	walkframe 37	LX
+	walkframe 50	LX
+	{ event AE_CL_PLAYCHARACTERSOUND			5	".B_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND						4	"Weapon_Blade.Reverse" }			
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "follow_attachment anim_attachment_S" }
+}
+
+
+$animation a_r_c3_t3 "anim_r_c3_t3" frames 0 60
+$sequence	r_c3_t3 {
+	a_r_c3_t3
+	ACT_BB_R_C3_T3 1
+	fps 50
+	alignto r_idle	
+	addlayer reverse_sword			
+	walkframe 7 	LX
+	walkframe 11	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 31	LX
+	walkframe 37	LX
+	walkframe 60	LX
+	{ event AE_CL_PLAYCHARACTERSOUND			10	".B_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND						10	"Weapon_Blade.Reverse" }			
+	{ event AE_CL_CREATE_SWORD_EFFECT 10 "follow_attachment anim_attachment_S" }	
+}
+
+
+
+//	combo 4 charge
+$sequence r_c4_charge "anim_r_c4_charge"{
+	ACT_BB_R_C4_CHARGE 1
+	alignto r_idle	
+	addlayer reverse_sword				
+	fps 50
+}
+
+//	combo 4 tiered attacks
+$animation a_r_c4_t1 "anim_r_c4_t1" frames 0 57
+$sequence	r_c4_t1 {
+	a_r_c4_t1
+	ACT_BB_R_C4_T1 1
+	fps 40
+	alignto r_idle	
+	fadein 0.1
+	addlayer reverse_sword			
+	walkframe 5 	LX LY
+	walkframe 10	LX LY
+	walkframe 15	LX LY
+	walkframe 20	LX LY
+	walkframe 25	LX LY	
+	walkframe 30	LX LY	
+	walkframe 35	LX LY	
+	walkframe 40	LX LY		
+	walkframe 45	LX LY	
+	walkframe 50	LX LY	
+	walkframe 55	LX LY	
+	walkframe 57	LX LY	
+	{ event AE_CL_PLAYCHARACTERSOUND			8	".B_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND				8	"Weapon_Blade.Reverse" }			
+
+	{ event AE_CL_PLAYCHARACTERSOUND			18	".B_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND				22	"Weapon_Blade.Reverse" }				
+}
+
+$animation a_r_c4_t2 "anim_r_c4_t2" frames 0 40
+$sequence	r_c4_t2 {
+	a_r_c4_t2
+	ACT_BB_R_C4_T2 1
+	fps 40
+	alignto r_idle	
+	addlayer reverse_sword			
+	walkframe 4		LX
+	walkframe 9 	LX
+	walkframe 12	LX
+	walkframe 17	LX	
+	walkframe 25	LX
+	walkframe 30	LX
+	walkframe 40	LX
+	{ event AE_CL_PLAYCHARACTERSOUND			5	".B_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND						5	"Weapon_Blade.Reverse" }				
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "follow_attachment anim_attachment_S" }
+}
+
+
+$animation a_r_c4_t3 "anim_r_c4_t3" frames 0 60
+$sequence	r_c4_t3 {
+	a_r_c4_t3
+	ACT_BB_R_C4_T3 1
+	fps 65
+	alignto r_idle	
+	addlayer reverse_sword			
+	walkframe 4 	LX
+	walkframe 6 	LX
+	walkframe 9 	LX
+	walkframe 13	LX
+	walkframe 17	LX
+	walkframe 21	LX
+	walkframe 25	LX
+	walkframe 30	LX
+	walkframe 50	LX
+	walkframe 60	LX
+	{ event AE_CL_PLAYCHARACTERSOUND			10	".B_Attack" }	
+	{ event AE_CL_PLAYSOUND						7	"Player_Shared.WindImpact" }
+	{ event AE_CL_PLAYWEAPONSOUND						10	"Weapon_Blade.Reverse" }			
+	{ event AE_CL_CREATE_SWORD_EFFECT 10 "follow_attachment anim_attachment_S" }	
+}
+
+//	combo 5 charge
+$sequence r_c5_charge "anim_r_c5_charge"{
+	ACT_BB_R_C5_CHARGE 1
+	alignto r_idle		
+	addlayer reverse_sword			
+	fps 50
+}
+
+//	combo 5 tiered attacks
+$animation a_r_c5_t1 "anim_r_c5_t1" frames 0 44
+$sequence	r_c5_t1 {
+	a_r_c5_t1
+	ACT_BB_R_C5_T1 1
+	fps 44	
+	alignto r_idle		
+	fadein 0.1
+	addlayer reverse_sword			
+	walkframe 5 	LX LY
+	walkframe 10	LX LY
+	walkframe 15	LX LY
+	walkframe 20	LX LY 
+	walkframe 25	LX LY
+	walkframe 30	LX LY	
+	walkframe 35	LX LY	
+	walkframe 40	LX LY	
+	walkframe 44	LX LY		
+	{ event AE_CL_PLAYCHARACTERSOUND			4	".B_Attack" }
+	{ event AE_CL_PLAYWEAPONSOUND				4	"Weapon_Blade.Reverse" }		
+	{ event AE_CL_PLAYSOUND						23	"Weapon_Blade.Whistle" }				
+}
+
+$animation a_r_c5_t2 "anim_r_c5_t2" frames 0 24
+$sequence	r_c5_t2 {
+	a_r_c5_t2
+	ACT_BB_R_C5_T2 1
+	fps 40
+	alignto r_idle	
+	addlayer reverse_sword			
+	walkframe 4		LX
+	walkframe 9 	LX
+	walkframe 12	LX
+	walkframe 17	LX	
+	walkframe 24	LX
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".B_Attack" }
+	{ event AE_CL_PLAYWEAPONSOUND						0	"Weapon_Blade.Reverse" }		
+	{ event AE_CL_PLAYSOUND						18	"Weapon_Blade.Whistle" }		
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "follow_attachment anim_attachment_S" }
+	{ event AE_BB_CREATE_TRACEMODEL		4	"models/tracemodels/sword_tracer_stab.mdl 8 1 1.5" }
+}
+
+
+$animation a_r_c5_t3 "anim_r_c5_t3" frames 0 48
+$sequence	r_c5_t3 {
+	a_r_c5_t3
+	ACT_BB_R_C5_T3 1
+	fps 50	
+	alignto r_idle	
+	addlayer reverse_sword				
+	walkframe 2		LX
+	walkframe 5 	LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX	
+	walkframe 27	LX	
+	walkframe 40	LX	
+	walkframe 45	LX		
+	walkframe 48	LX		
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".B_Attack" }
+	{ event AE_CL_PLAYWEAPONSOUND						2	"Weapon_Blade.Reverse" }		
+	{ event AE_CL_PLAYSOUND						22	"Weapon_Blade.Whistle" }	
+	{ event AE_CL_PLAYSOUND						32	"Weapon_Blade.Whistle" }		
+	{ event AE_CL_CREATE_SWORD_EFFECT 2 "follow_attachment anim_attachment_S" }	
+	{ event AE_BB_CREATE_TRACEMODEL		4	"models/tracemodels/sword_tracer_stab.mdl 20 1 1.5" }
+}
+
+
+
+//	combo 6 charge
+$sequence r_c6_charge "anim_r_c6_charge"{
+	ACT_BB_R_C6_CHARGE 1
+	alignto r_idle		
+	addlayer reverse_sword			
+	fps 50
+}
+
+//	combo 6 tiered attacks
+$animation a_r_c6_t1 "anim_r_c6_t1" frames 0 80
+$sequence	r_c6_t1 {
+	a_r_c6_t1
+	ACT_BB_R_C6_T1 1
+	alignto r_idle	
+	fadein 0.1		
+	addlayer reverse_sword			
+	walkframe 5		LX
+	walkframe 10 	LX
+	walkframe 15	LX
+	walkframe 20	LX	
+	walkframe 25	LX
+	walkframe 30	LX	
+	walkframe 35	LX	
+	walkframe 40	LX
+	walkframe 45	LX
+	walkframe 50	LX
+	walkframe 55	LX	
+	walkframe 60	LX	
+	walkframe 65	LX
+	walkframe 70	LX
+	walkframe 75	LX
+	walkframe 80	LX
+
+	{ event AE_CL_PLAYCHARACTERSOUND			4	".B_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND				4	"Weapon_Blade.Reverse" }	
+
+	{ event AE_CL_PLAYSOUND						14 "Player_Shared.Shuffle" }	
+
+	{ event AE_CL_PLAYSOUND						30	"Weapon_Blade.Whistle" }						
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 26 "player_slide_dust follow_attachment rfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 29 "player_slide_dust follow_attachment lfoot" }	
+}
+
+$animation a_r_c6_t2 "anim_r_c6_t2" frames 0 60
+$sequence	r_c6_t2 {
+	a_r_c6_t2
+	ACT_BB_R_C6_T2 1
+	fps 40
+	alignto r_idle	
+	addlayer reverse_sword			
+	walkframe 4 	LX
+	walkframe 6 	LX
+	walkframe 9 	LX
+	walkframe 13	LX
+	walkframe 17	LX
+	walkframe 21	LX
+	walkframe 25	LX
+	walkframe 30	LX
+	walkframe 35	LX
+	walkframe 50	LX
+	walkframe 60	LX	
+	{ event AE_CL_PLAYCHARACTERSOUND			3	".B_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND						3	"Weapon_Blade.Reverse" }		
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "follow_attachment anim_attachment_S" }
+}
+
+
+$animation a_r_c6_t3 "anim_r_c6_t3" frames 0 80
+$sequence	r_c6_t3 {
+	a_r_c6_t3
+	ACT_BB_R_C6_T3 1
+	fps 50
+	alignto r_idle	
+	addlayer reverse_sword			
+	walkframe 4 	LX
+	walkframe 6 	LX
+	walkframe 9 	LX
+	walkframe 13	LX
+	walkframe 17	LX
+	walkframe 21	LX
+	walkframe 25	LX
+	walkframe 30	LX
+	walkframe 35	LX
+	walkframe 40	LX	
+	walkframe 45	LX	
+	walkframe 50	LX	
+	walkframe 55	LX	
+	walkframe 60	LX
+	walkframe 65	LX	
+	walkframe 70	LX	
+	walkframe 75	LX	
+	walkframe 80	LX	
+	
+	{ event AE_CL_PLAYCHARACTERSOUND			10	".B_Attack" }	
+	{ event AE_CL_PLAYSOUND						8	"Player_Shared.WindImpact" }
+	{ event AE_CL_PLAYWEAPONSOUND						4	"Weapon_Blade.Reverse" }	
+	{ event AE_CL_PLAYSOUND						26	"Weapon_Blade.Whistle" }		
+	{ event AE_CL_CREATE_SWORD_EFFECT 26 "follow_attachment anim_attachment_S" }	
+}
+
+
+
+
+
+
+
+//	left charge
+$sequence r_left_charge "anim_r_left_charge" {
+	ACT_BB_R_LEFT_CHARGE 1
+	fps 90
+}
+
+//	left running charge
+$sequence r_left_charge_running "anim_r_left_charge_running" {
+	ACT_BB_R_LEFT_CHARGE_RUNNING 1
+	fps 50
+	weightlist SlowerUpperbodyBlend 
+	weightlist NoHead	
+	alignto r_idle 	
+	addlayer reverse_sword			
+	iklock lfoot 1 0 iklock rfoot 1 0 
+}
+
+
+//	left tiered attacks
+$animation a_r_left_t1 "anim_r_left_t1" frames 0 24
+$sequence	r_left_t1 {
+	a_r_left_t1
+	ACT_BB_r_LEFT_T1 1
+	fps 24
+	alignto r_idle		
+	addlayer reverse_sword			
+	walkframe 4 	LY LX
+	walkframe 6 	LY LX
+	walkframe 9 	LY LX
+	walkframe 13	LY LX
+	walkframe 17	LY LX
+	walkframe 20	LY LX
+	walkframe 24	LY LX
+	{ event AE_CL_PLAYCHARACTERSOUND			3	".B_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND						4	"Weapon_Blade.Reverse" }			
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "follow_attachment anim_attachment_S" }
+}
+
+$animation a_r_left_t2 "anim_r_left_t2" frames 0 40
+$sequence	r_left_t2 {
+	a_r_left_t2
+	ACT_BB_R_LEFT_T2 1
+	fps 40
+	alignto r_idle		
+	addlayer reverse_sword			
+	walkframe 4 	LY LX
+	walkframe 6 	LY LX
+	walkframe 9 	LY LX
+	walkframe 13	LY LX
+	walkframe 17	LY LX
+	walkframe 20	LY LX		
+	walkframe 25	LY LX		
+	walkframe 30	LY LX		
+	walkframe 35	LY LX		
+	walkframe 40	LY LX			
+	{ event AE_CL_PLAYCHARACTERSOUND			5	".B_Attack" }	
+	{ event AE_CL_PLAYSOUND						1	"Player_Shared.WindImpact" }	
+	{ event AE_CL_PLAYWEAPONSOUND						10	"Weapon_Blade.Reverse" }				
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "follow_attachment anim_attachment_S" }
+}
+
+$animation a_r_left_t3 "anim_r_left_t3" frames 0 24
+$sequence	r_left_t3 {
+	a_r_left_t3
+	ACT_BB_R_LEFT_T3 1
+	fps 24
+	alignto r_idle		
+	addlayer reverse_sword			
+	walkframe 4 	LY LX
+	walkframe 6 	LY LX
+	walkframe 9 	LY LX
+	walkframe 13	LY LX
+	walkframe 17	LY LX
+	walkframe 20	LY LX	
+	walkframe 24	LY LX		
+	{ event AE_CL_PLAYCHARACTERSOUND			8	".B_Attack" }		
+	{ event AE_CL_PLAYWEAPONSOUND						8	"Weapon_Blade.Reverse" }					
+	{ event AE_CL_CREATE_SWORD_EFFECT 8 "follow_attachment anim_attachment_S" }	
+}
+
+
+
+
+//	right charge
+$sequence r_right_charge "anim_r_right_charge" {
+	ACT_BB_R_RIGHT_CHARGE 1
+	fps 50
+}
+
+//	right running charge
+$sequence r_right_charge_running "anim_r_right_charge_running" {
+	ACT_BB_R_RIGHT_CHARGE_RUNNING 1
+	fps 50
+	weightlist SlowerUpperbodyBlend 
+	weightlist NoHead	
+	alignto r_idle 	
+	addlayer reverse_sword			
+	iklock lfoot 1 0 iklock rfoot 1 0 
+}
+
+
+//	right tiered attacks
+$animation a_r_right_t1 "anim_r_right_t1" frames 0 26
+$sequence	r_right_t1 {
+	a_r_right_t1
+	ACT_BB_r_RIGHT_T1 1
+	fps 20
+	alignto r_idle		
+	addlayer reverse_sword			
+	walkframe 4 	LY LX
+	walkframe 6 	LY LX
+	walkframe 9 	LY LX
+	walkframe 13	LY LX
+	walkframe 17	LY LX
+	walkframe 20	LY LX	
+	walkframe 26	LY LX	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".B_Attack" }	
+	{ event AE_CL_PLAYSOUND						0	"Weapon_Blade.Whistle" }				
+	{ event AE_CL_PLAYWEAPONSOUND						6	"Weapon_Blade.Reverse" }			
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "follow_attachment anim_attachment_S" }
+}
+
+$animation a_r_right_t2 "anim_r_right_t2" frames 0 36
+$sequence	r_right_t2 {
+	a_r_right_t2
+	ACT_BB_R_RIGHT_T2 1
+	fps 30
+	alignto r_idle		
+	addlayer reverse_sword			
+	walkframe 4 	LY LX
+	walkframe 6 	LY LX
+	walkframe 9 	LY LX
+	walkframe 13	LY LX
+	walkframe 17	LY LX
+	walkframe 20	LY LX	
+	walkframe 26	LY LX	
+	walkframe 30 	LY LX
+	walkframe 32 	LY LX
+	walkframe 36	LY LX
+	{ event AE_CL_PLAYCHARACTERSOUND			10	".B_Attack" }	
+	{ event AE_CL_PLAYSOUND						0	"Weapon_Blade.Whistle" }	
+	{ event AE_CL_PLAYSOUND						1	"Player_Shared.WindImpact" }		
+	{ event AE_CL_PLAYWEAPONSOUND						12	"Weapon_Blade.Reverse" }				
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "follow_attachment anim_attachment_S" }
+}
+
+$animation a_r_right_t3 "anim_r_right_t3" frames 0 22
+$sequence	r_right_t3 {
+	a_r_right_t3
+	ACT_BB_R_RIGHT_T3 1
+	fps 15
+	alignto r_idle	
+	addlayer reverse_sword				
+	walkframe 4 	LY LX
+	walkframe 6 	LY LX
+	walkframe 9 	LY LX
+	walkframe 13	LY LX
+	walkframe 17	LY LX
+	walkframe 20	LY LX	
+	walkframe 22	LY LX		
+	{ event AE_CL_PLAYCHARACTERSOUND			5	".B_Attack" }	
+	{ event AE_CL_PLAYSOUND						0	"Weapon_Blade.Whistle" }		
+	{ event AE_CL_PLAYWEAPONSOUND						4	"Weapon_Blade.Reverse" }				
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "follow_attachment anim_attachment_S" }	
+}

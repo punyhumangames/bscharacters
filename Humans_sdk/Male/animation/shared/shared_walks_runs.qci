@@ -1,0 +1,130 @@
+//====================================================
+//
+//	LOWER BODY MOVEMENT ANIMATION
+//
+//====================================================
+
+	//-----------------
+	//	Run
+	//-----------------
+
+	// old non-ik ones, shouldn't be used anymore.
+	/*
+		$animation a_RunS RunS startloop 0 LX LY alignto Idle_lower rotateto -180
+		$animation a_RunSE RunSE startloop 0 LX LY alignto Idle_lower rotateto -135
+		$animation a_RunE RunE startloop 0 LX LY alignto Idle_lower rotateto -90
+		$animation a_RunNE RunNE startloop 0 LX LY alignto Idle_lower rotateto -45
+		$animation a_RunN RunN startloop 0 LX LY alignto Idle_lower rotateto 0
+		$animation a_RunNW RunNW startloop 0 LX LY alignto Idle_lower rotateto 45
+		$animation a_RunW RunW startloop 0 LX LY alignto Idle_lower rotateto 90
+		$animation a_RunSW RunSW startloop 0 LX LY alignto Idle_lower rotateto 135
+		$animation a_RunZero "anim_run_zero" alignto Idle_lower
+	*/
+		
+		
+	//-----------------
+	//	IK Run
+	//-----------------
+		
+		$animation a_RunS_IK RunS startloop 0 LX LY alignto reference rotateto -180 cmdlist ikrules_run
+		$animation a_RunSE_IK RunSE startloop 0 LX LY alignto reference rotateto -135 cmdlist ikrules_run
+		$animation a_RunE_IK RunE startloop 0 LX LY alignto reference rotateto -90 cmdlist ikrules_run
+		$animation a_RunNE_IK RunNE startloop 0 LX LY alignto reference rotateto -45 cmdlist ikrules_run
+		$animation a_RunN_IK RunN startloop 0 LX LY alignto reference rotateto 0 cmdlist ikrules_run
+		$animation a_RunNW_IK RunNW startloop 0 LX LY alignto reference rotateto 45 cmdlist ikrules_run
+		$animation a_RunW_IK RunW startloop 0 LX LY alignto reference rotateto 90 cmdlist ikrules_run
+		$animation a_RunSW_IK RunSW startloop 0 LX LY alignto reference rotateto 135 cmdlist ikrules_run
+		$animation a_RunZero_IK "anim_run_zero_full" alignto reference cmdlist ikrules_run_idle
+
+		$sequence Run_lower {
+			a_RunNW_IK a_RunN_IK a_RunNE_IK 
+			a_RunW_IK a_RunZero_IK a_RunE_IK 
+			a_RunSW_IK a_RunS_IK a_RunSE_IK 
+			blendwidth 3 blend move_y -1 1 blend move_x 1 -1 loop
+			ACT_RUN 1
+			{ event 7001 14 "lfoot" }
+			{ event 7001 5 "rfoot" }
+			{ event AE_BB_FOOTSTEP_SPLASH	6	"0" }
+			{ event AE_BB_FOOTSTEP_SPLASH	15	"1" }
+		}
+
+	
+	//-----------------
+	//	Walk
+	//-----------------
+/*
+		$animation a_WalkS anim_bb_walk_s startloop 0 LX LY loop alignto Idle_lower rotateto -180 fps 40 	alignto Idle_Lower
+		$animation a_WalkSE anim_bb_walk_s startloop 0 LX LY loop alignto Idle_lower rotateto -135 fps 40 	alignto Idle_Lower
+		$animation a_WalkE anim_bb_walk_e startloop 0 LX LY loop alignto Idle_lower rotateto -90 fps 40 	alignto Idle_Lower
+		$animation a_WalkNE anim_bb_walk_n startloop 0 LX LY loop alignto Idle_lower rotateto -45 fps 40 	alignto Idle_Lower
+		$animation a_WalkN anim_bb_walk_n startloop 0 LX LY loop alignto Idle_lower rotateto 0 fps 40 		alignto Idle_Lower
+		$animation a_WalkNW anim_bb_walk_n startloop 0 LX LY loop alignto Idle_lower rotateto 45 fps 40 	alignto Idle_Lower
+		$animation a_WalkW anim_bb_walk_w startloop 0 LX LY loop alignto Idle_lower rotateto 90 fps 40 		alignto Idle_Lower
+		$animation a_WalkSW anim_bb_walk_s startloop 0 LX LY loop alignto Idle_lower rotateto 135 fps 40 	alignto Idle_Lower
+		$animation a_walkZero "anim_bb_walk_idle"  alignto Idle_lower loop fps 40
+
+		$sequence walk_lower {
+			a_walkNW a_walkN a_walkNE 
+			a_walkW a_walkZero a_walkE 
+			a_walkSW a_walkS a_walkSE 
+			blendwidth 3 blend move_y -1 1 blend move_x 1 -1 loop
+			//ACT_WALK 1
+			{ event 7002 15 "lfoot" }
+			{ event 7002 4 "lfoot" }
+			{ event AE_BB_FOOTSTEP_SPLASH	6	"0" }
+			{ event AE_BB_FOOTSTEP_SPLASH	15	"1" }
+		}
+*/
+	//-----------------
+	//	Walk - new
+	//-----------------
+
+		$animation s_WalkS anim_WalkS startloop 0 LX LY loop alignto Idle_lower 	rotateto -180 	fps 28 	alignto Idle_Lower
+		$animation s_WalkSE anim_WalkSE startloop 0 LX LY loop alignto Idle_lower 	rotateto -135 	fps 28 	alignto Idle_Lower
+		$animation s_WalkE anim_WalkE startloop 0 LX LY loop alignto Idle_lower 	rotateto -90 	fps 28 	alignto Idle_Lower
+		$animation s_WalkNE anim_WalkNE startloop 0 LX LY loop alignto Idle_lower 	rotateto -45 	fps 28 	alignto Idle_Lower
+		$animation s_WalkN anim_WalkN startloop 0 LX LY loop alignto Idle_lower 	rotateto 0 		fps 28 	alignto Idle_Lower
+		$animation s_WalkNW anim_WalkNW startloop 0 LX LY loop alignto Idle_lower 	rotateto 45 	fps 28 	alignto Idle_Lower
+		$animation s_WalkW anim_WalkW startloop 0 LX LY loop alignto Idle_lower 	rotateto 90 	fps 28 	alignto Idle_Lower
+		$animation s_WalkSW anim_WalkSW startloop 0 LX LY loop alignto Idle_lower 	rotateto 135 	fps 28 	alignto Idle_Lower
+		$animation s_WalkZero "anim_Walk_idle"  alignto Idle_lower loop 			fps 28  frames 0 32
+
+		$sequence walk_lower_2 {
+			s_WalkNW s_WalkN s_WalkNE 
+			s_WalkW s_WalkZero s_WalkE 
+			s_WalkSW s_WalkS s_WalkSE 
+			blendwidth 3 blend move_y -1 1 blend move_x 1 -1 loop
+			ACT_WALK 1
+			{ event 7002 15 "lfoot" }
+			{ event 7002 4 "lfoot" }
+			{ event AE_BB_FOOTSTEP_SPLASH	6	"0" }
+			{ event AE_BB_FOOTSTEP_SPLASH	15	"1" }
+		}
+
+
+	//-----------------
+	//	Crab Walk
+	//-----------------
+/*
+		$animation a_crabwalk_S anim_crabwalk_s startloop 0 LX LY loop alignto Idle_lower fps 20 alignto Idle_Lower
+		$animation a_crabwalk_SE anim_crabwalk_se startloop 0 LX LY loop alignto Idle_lower fps 20 alignto Idle_Lower
+		$animation a_crabwalk_E anim_crabwalk_e startloop 0 LX LY loop alignto Idle_lower fps 20 alignto Idle_Lower
+		$animation a_crabwalk_NE anim_crabwalk_ne startloop 0 LX LY loop alignto Idle_lower fps 20 alignto Idle_Lower
+		$animation a_crabwalk_N anim_crabwalk_n startloop 0 LX LY loop alignto Idle_lower fps 20 alignto Idle_Lower
+		$animation a_crabwalk_NW anim_crabwalk_nw startloop 0 LX LY loop alignto Idle_lower fps 20 alignto Idle_Lower
+		$animation a_crabwalk_W anim_crabwalk_w startloop 0 LX LY loop alignto Idle_lower fps 20 alignto Idle_Lower
+		$animation a_crabwalk_SW anim_crabwalk_sw startloop 0 LX LY loop alignto Idle_lower fps 20 	alignto Idle_Lower
+		$animation a_crabwalk_Zero "anim_crabwalk_zero"  alignto Idle_lower loop fps 20
+
+		$sequence crabwalk_lower {
+			a_crabwalk_NW a_crabwalk_N a_crabwalk_NE 
+			a_crabwalk_W a_crabwalk_Zero a_crabwalk_E 
+			a_crabwalk_SW a_crabwalk_S a_crabwalk_SE 
+			blendwidth 3 blend move_y -1 1 blend move_x 1 -1 loop
+			ACT_BB_CRABWALK 1
+			//{ event 7002 15 "lfoot" }
+			//{ event 7002 4 "lfoot" }
+			//{ event AE_BB_FOOTSTEP_SPLASH	6	"0" }
+			//{ event AE_BB_FOOTSTEP_SPLASH	15	"1" }
+		}
+*/

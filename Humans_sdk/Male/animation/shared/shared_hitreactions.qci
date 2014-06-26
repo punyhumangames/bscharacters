@@ -1,0 +1,17 @@
+//====================================================
+//
+//	full body hit reactions
+//
+//====================================================
+
+$sequence air_stunned "anim_air_stunned" {
+	ACT_BB_AIR_STUNNED 1
+	fps 22
+	snap
+	walkframe 1 	LX LZ
+	walkframe 5 	LX LZ
+	walkframe 10 	LX LZ
+	walkframe 15 	LX LZ
+	walkframe 20 	LX LZ
+	walkframe 22 	LX LZ			
+}

@@ -1,0 +1,37 @@
+//-----------------
+//	Hit Reaction 9 Blended
+//-----------------
+
+	$poseparameter hit_yaw -180 180
+
+	// *flinch animation must be faster than lower body or it won't be able to fade out correctly and snap!*
+	$animation a_hit_u_n "anim_stumble_forward" fps 30 weightlist UpperbodyBlend
+	$animation a_hit_u_nw "anim_stumble_forward_left" fps 30 weightlist UpperbodyBlend
+	$animation a_hit_u_w "anim_stumble_left" fps 30 weightlist UpperbodyBlend
+	$animation a_hit_u_sw "anim_stumble_back_left" fps 30 weightlist UpperbodyBlend
+	$animation a_hit_u_s "anim_stumble_back" fps 30 weightlist UpperbodyBlend
+	$animation a_hit_u_se "anim_stumble_back_right" fps 30 weightlist UpperbodyBlend
+	$animation a_hit_u_e "anim_stumble_right" fps 30 weightlist UpperbodyBlend
+	$animation a_hit_u_ne "anim_stumble_forward_right" fps 30 weightlist UpperbodyBlend
+
+	$sequence hit_upper_heavy {
+		a_hit_u_s a_hit_u_se a_hit_u_e a_hit_u_ne a_hit_u_n a_hit_u_nw a_hit_u_w a_hit_u_sw a_hit_u_s
+		blendwidth 9 blend hit_yaw -180 180
+		ACT_HIT_UPPER_HEAVY 1
+	}
+
+
+	$animation a_hr_n "anim_stumble_light_forward" fps 30 weightlist UpperbodyBlend
+	$animation a_hr_nw "anim_stumble_light_forward_left" fps 30 weightlist UpperbodyBlend
+	$animation a_hr_w "anim_stumble_light_left" fps 30 weightlist UpperbodyBlend
+	$animation a_hr_sw "anim_stumble_light_back_left" fps 30 weightlist UpperbodyBlend
+	$animation a_hr_s "anim_stumble_light_back" fps 30 weightlist UpperbodyBlend
+	$animation a_hr_se "anim_stumble_light_back_right" fps 30 weightlist UpperbodyBlend
+	$animation a_hr_e "anim_stumble_light_right" fps 30 weightlist UpperbodyBlend
+	$animation a_hr_ne "anim_stumble_light_forward_right" fps 30 weightlist UpperbodyBlend
+
+	$sequence hit_upper {
+		a_hr_s a_hr_se a_hr_e a_hr_ne a_hr_n a_hr_nw a_hr_w a_hr_sw a_hr_s
+		blendwidth 9 blend hit_yaw -180 180
+		ACT_HIT_UPPER 1		
+	}

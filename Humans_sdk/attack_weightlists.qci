@@ -1,0 +1,33 @@
+
+
+$Weightlist AttackChargeRun {
+	"ValveBiped.Bip01_Pelvis" 0.5 	
+	"ValveBiped.Bip01_L_Thigh" 0.0 
+	"ValveBiped.Bip01_R_Thigh" 0.0	
+	"ValveBiped.Bip01_Spine"  0.5
+	"ValveBiped.Bip01_Spine2"  0.6
+	"ValveBiped.Bip01_Spine4"  0.8
+	"ValveBiped.Bip01_L_Clavicle" 0.6	
+	"ValveBiped.Bip01_R_Clavicle" 0.6
+	"ValveBiped.Bip01_L_UpperArm" 1.0
+	"ValveBiped.Bip01_R_UpperArm" 1.0
+} 
+
+$Weightlist AttackChargeRunDualHands {
+	"ValveBiped.Bip01_Pelvis" 0.5 	
+	"ValveBiped.Bip01_L_Thigh" 0.0 
+	"ValveBiped.Bip01_R_Thigh" 0.0	
+	"ValveBiped.Bip01_Spine"  0.5
+	"ValveBiped.Bip01_Spine2"  0.6
+	"ValveBiped.Bip01_Spine4"  0.8
+	"ValveBiped.Bip01_L_Clavicle" 1.0	
+	"ValveBiped.Bip01_R_Clavicle" 1.0
+} 
+
+$Weightlist AttackMoveBlend {
+	"ValveBiped.Bip01_Pelvis" 0.4 	
+	"ValveBiped.Bip01_L_Thigh" 0.0 
+	"ValveBiped.Bip01_R_Thigh" 0.0	
+	"ValveBiped.Bip01_Spine"  1.0 	
+	"sheathe_attach_hip" 0.0
+} 

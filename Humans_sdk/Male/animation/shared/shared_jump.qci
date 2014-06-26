@@ -1,0 +1,72 @@
+//====================================================
+//
+//	Shared Jumping
+//
+//====================================================
+
+$sequence jump {
+	anim_jump
+	ACT_BB_JUMP 1
+	frames 0 94
+	alignto Idle_lower	
+	X Y Z
+	fps 80	
+}
+
+$sequence jump_descend {
+	anim_jump_descend
+	ACT_BB_BALANCED_JUMP 1
+	frames 0 48
+	alignto Idle_lower	
+	X Y Z
+	fps 48	
+}
+
+$sequence jump_legs {
+	anim_jump_legs
+	ACT_BB_JUMP_LEGS 1	
+	alignto Idle_lower	
+	frames 0 0
+	weightlist JumpLegsBlend
+	fps 20	
+}
+
+
+//====================================================
+//
+//	Shared Jump Charge
+//
+//====================================================
+
+$animation a_jump_charge_zero anim_jump_charge frames 0 0
+
+$sequence jump_charge {
+	anim_jump_charge
+	subtract a_jump_charge_zero 0
+	iklock lfoot 1 0
+	iklock rfoot 1 0
+	delta
+	ACT_BB_JUMP_CHARGE 1	
+	alignto Idle_lower	
+	weightlist SlowerLowerbodyBlend
+	fps 70	
+}
+
+//====================================================
+//
+//	Shared Landing
+//
+//====================================================
+
+$animation a_jump_land_zero anim_balanced_land frames 0 0
+
+$sequence jump_land {
+	anim_balanced_land
+	subtract a_jump_land_zero 0
+	iklock lfoot 1 0
+	iklock rfoot 1 0
+	delta
+	ACT_BB_JUMP_LAND 1	
+	//alignto Idle_lower	
+	fps 70	
+}

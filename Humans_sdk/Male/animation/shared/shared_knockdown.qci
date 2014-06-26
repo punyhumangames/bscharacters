@@ -1,0 +1,142 @@
+//====================================================
+//
+//	SHARED KNOCKDOWN
+//
+//====================================================
+
+//	falling through the air
+//	eg getting hit while in the air does this anim
+$sequence falling anim_falling {
+    ACT_BB_FALLING 1
+    fps 24
+    alignto Idle_Lower
+    loop
+}
+
+//	hitting the ground and getting back up to keneling
+$sequence groundhit anim_ground_hit {
+    ACT_BB_GROUND_HIT 1
+    fps 90
+    alignto Idle_Lower
+    frames 8 110
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX		
+	walkframe 30	LX
+	walkframe 35	LX
+	walkframe 40	LX
+	walkframe 45	LX
+	walkframe 50	LX
+	walkframe 55	LX
+	walkframe 60	LX
+	walkframe 65	LX
+	walkframe 70	LX
+	walkframe 75	LX
+	walkframe 80	LX
+	walkframe 85	LX
+	walkframe 90	LX
+	walkframe 95	LX
+	walkframe 100	LX
+	walkframe 101	LX
+
+	{ event AE_CL_PLAYSOUND				3	"Player_Shared.FallHitGround" }		
+	{ event AE_CL_PLAYSOUND				50	"Player_Shared.KipUp" }	
+	{ event AE_CL_PLAYCHARACTERSOUND	65	".Roll" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 5 "smoke_ring start_at_origin" }			
+}
+
+$sequence kneeling anim_kneeling {
+    ACT_BB_KNEELING 1
+    fps 18
+    alignto Idle_Lower
+    loop
+}
+
+$sequence kneeling_recover anim_kneeling_recover {
+	ACT_BB_KNEELING_RECOVER 1
+	fps 16
+	alignto Idle_Lower
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 12	LX
+}
+
+$sequence recover_forward anim_recover_forward {
+    ACT_BB_RECOVER_FORWARD 1
+    Y
+    fps 46
+    alignto Idle_Lower
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 23	LX			
+}
+
+$sequence recover_back anim_recover_back {
+    ACT_BB_RECOVER_BACK 1
+    Y
+    fps 46
+    alignto Idle_Lower
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 23	LX			
+}
+
+$sequence recover_left anim_recover_left {
+    ACT_BB_RECOVER_LEFT 1
+    X
+    fps 46
+    alignto Idle_Lower
+	walkframe 5		LY
+	walkframe 10	LY
+	walkframe 15	LY
+	walkframe 20	LY
+	walkframe 23	LY		
+}
+
+$sequence recover_right anim_recover_right {
+    ACT_BB_RECOVER_RIGHT 1
+    X
+    fps 46
+    alignto Idle_Lower
+	walkframe 5		LY
+	walkframe 10	LY
+	walkframe 15	LY
+	walkframe 20	LY
+	walkframe 23	LY		
+}
+
+/*
+$sequence strikeout anim_strikeout {
+    ACT_BB_STRIKEOUT 1
+    fps 30
+    alignto Idle_Lower
+	X Y Z
+	{ event AE_CL_PLAYCHARACTERSOUND	0	".Pain" }
+	{ event AE_CL_PLAYSOUND				5	"Player_Shared.Backflip" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }	
+}
+
+*/
+
+//	recovery attack
+$sequence recovery_attack "anim_recovery_attack" frames 0 60 {
+	ACT_BB_RECOVERY_ATTACK 1
+	fps 24
+	alignto reference 	
+	walkframe 10	LX
+	walkframe 20	LX
+	walkframe 30	LX		
+	walkframe 40	LX		
+	walkframe 50	LX		
+	walkframe 60	LX		
+	{ event AE_CL_PLAYCHARACTERSOUND					12	".B_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND						12	"Weapon_Blade.Balanced" }	
+	{ event AE_CL_CREATE_SWORD_EFFECT					12 "follow_attachment anim_attachment_S" }	
+}

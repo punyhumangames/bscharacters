@@ -1,0 +1,456 @@
+//====================================================
+//
+//	 RYOKU BALANCED STANCE IDLE + RUN
+//
+//====================================================
+
+Å $sequence b_idle "anim_b_idle"{
+		ACT_BB_B_IDLE 1
+		fps 24
+		loop
+		cmdlist lockfeet
+	}
+	$animation a_b_RunZero "anim_b_idle" 
+	$animation a_b_idle_base anim_b_idle frame 0 0
+	//Placeholder b_run gesture and b_run_movement
+	$animation a_b_run_base anim_b_run_gesture_idle cmdlist ikrules_run_idle
+	$sequence b_run_body "anim_b_run_movement" {	
+		weightlist UpperbodyBlend 	
+		loop
+	}
+	$pushd "../shared"
+	$sequence b_run_mod "RunN" { 
+		X Y rotateto 0 
+		alignto reference 
+		weightlist SlowerUpperbodyBlend 
+		worldspaceblend a_b_run_base 
+	} 
+	$popd
+	$sequence b_run { 
+		a_RunNW_IK a_RunN_IK a_RunNE_IK 
+		a_RunW_IK a_b_run_base a_RunE_IK 
+		a_RunSW_IK a_RunS_IK a_RunSE_IK 
+		blendwidth 3 blend move_y -1 1 blend move_x 1 -1 loop
+		addlayer b_run_mod 	
+		addlayer b_run_body
+		ACT_BB_B_RUN 1
+		alignto reference
+		{ event AE_BB_FOOTSTEP_SPLASH	6	"0" }
+		{ event AE_BB_FOOTSTEP_SPLASH	15	"1" }
+	}
+
+//====================================================
+//
+//	RYOKU IDLE TURNING
+//
+//====================================================	
+
+
+	$sequence b_turn_left {
+	anim_b_idle_turn_left_90
+	activity ACT_BB_B_TURN_LEFT 1
+	alignto b_idle
+	fps 40
+	//Weightlist lowerbody
+	LZR
+	loop
+	ikrule lfoot footstep range 3 18 20 19 height $STANDARD_IK_HEIGHT$ usesequence
+	ikrule rfoot footstep range 3 18 20 19 height $STANDARD_IK_HEIGHT$ usesequence
+	}	
+	
+
+//====================================================
+//
+//	STRING 1
+//
+//====================================================
+
+	// string 1 charge
+	$sequence b_s1_charge "anim_b_s1_charge"{
+		ACT_BB_B_C1_CHARGE 1
+		alignto reference		
+		fps 15
+		walkframe 5		LX
+		walkframe 10	LX
+		walkframe 15	LX
+		walkframe 20	LX
+		walkframe 24	LX		
+	}
+
+	//	string 1 running charge
+	$sequence b_s1_charge_running "anim_b_s1_charge_running" {
+		ACT_BB_B_C1_CHARGE_RUNNING 1
+		fps 15
+		weightlist SlowerUpperbodyBlend 
+		weightlist NoHead	
+		alignto reference 	
+		iklock lfoot 1 0 iklock rfoot 1 0 
+	}
+
+	//	string 1 tiered attacks
+	$animation a_b_s1_t1 "anim_b_s1_t1" frames 0 30
+	$sequence	b_s1_t1 {
+		a_b_s1_t1
+		ACT_BB_B_C1_T1 1
+		fps 26
+		alignto reference		
+		walkframe 5	LX
+		walkframe 10	LX
+		walkframe 15	LX
+		walkframe 20	LX
+		walkframe 25	LX
+		walkframe 30	LX		
+
+		{ event AE_CL_PLAYCHARACTERSOUND			0	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				9	"Weapon_Blade.Balanced" }	
+		{ event AE_CL_CREATE_SWORD_EFFECT			9	"follow_attachment anim_attachment_S" }				
+	}
+
+	
+	$animation a_b_s1_t2 "anim_b_s1_t2" frames 0 30
+	$sequence	b_s1_t2 {
+		a_b_s1_t2
+		ACT_BB_B_C1_T2 1
+		fps 26
+		alignto reference		
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 15	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 30	LX LY
+						
+		{ event AE_CL_CREATE_SWORD_EFFECT			18	"follow_attachment anim_attachment_S" }
+
+		{ event AE_CL_PLAYSOUND						4	"Player_Shared.Dash_Forward_FX" }	
+
+		{ event AE_CL_PLAYCHARACTERSOUND			18	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				18	"Weapon_Blade.Balanced" }
+	}
+	
+	
+	$animation a_b_s1_t3 "anim_b_s1_t3" frames 0 45
+	$sequence	b_s1_t3 {
+		a_b_s1_t3
+		ACT_BB_B_C1_T3 1
+		fps 26
+		alignto reference		
+		walkframe 5	LX
+		walkframe 10	LX
+		walkframe 15	LX
+		walkframe 20	LX
+		walkframe 25	LX
+		walkframe 30	LX
+		walkframe 35	LX
+		walkframe 40	LX
+		walkframe 45	LX
+
+		{ event AE_CL_CREATE_SWORD_EFFECT			6	"follow_attachment anim_attachment_S" }	
+
+		//	first swing
+		{ event AE_CL_PLAYWEAPONSOUND				6	"Weapon_Blade.Balanced" }	
+
+		//	spin
+		{ event AE_CL_PLAYSOUND						12	"Player_Shared.Dash_Forward_FX" }
+
+		//	second swing
+		{ event AE_CL_PLAYCHARACTERSOUND			24	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				24	"Weapon_Blade.Balanced" }		
+	}
+	
+	//====================================================
+	//
+	//	STRING 2
+	//
+	//====================================================
+
+	// $sequence b_s2_charge "anim_b_s2_charge" {
+	// 	ACT_BB_B_C2_CHARGE 1
+	// 	fps 29
+	// 	alignto reference 	
+	// }
+	
+	$animation a_b_s2_t1 "anim_b_s2_t1" frames 0 27
+	$sequence	b_s2_t1 {
+		a_b_s2_t1
+		ACT_BB_B_C2_T1 1
+		fps 20
+		alignto reference		
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 15	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 27	LX LY
+
+						
+		{ event AE_CL_CREATE_SWORD_EFFECT			4	"follow_attachment anim_attachment_S" }	
+
+		{ event AE_CL_PLAYCHARACTERSOUND			4	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				7	"Weapon_Blade.Balanced" }
+
+		{ event AE_CL_PLAYSOUND						12	"Player_Shared.Backflip" }		
+	}
+	
+	$animation a_b_s2_t2 "anim_b_s2_t2" frames 0 25
+	$sequence	b_s2_t2 {
+		a_b_s2_t2
+		ACT_BB_B_C2_T2 1
+		fps 24
+		alignto reference		
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 15	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+						
+		{ event AE_CL_CREATE_SWORD_EFFECT			2	"follow_attachment anim_attachment_S" }						
+		{ event AE_CL_PLAYCHARACTERSOUND			2	".B_Attack" }	
+
+		{ event AE_CL_PLAYWEAPONSOUND				8	"Weapon_Blade.Balanced" }
+
+		{ event AE_CL_PLAYSOUND						10	"Player_Shared.Backflip" }	
+	}
+	
+	$animation a_b_s2_t3 "anim_b_s2_t3" frames 0 65
+	$sequence	b_s2_t3 {
+		a_b_s2_t3
+		ACT_BB_B_C2_T3 1
+		fps 28
+		alignto reference		
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 15	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 30	LX LY
+		walkframe 35	LX LY
+		walkframe 40	LX LY
+		walkframe 45	LX LY
+		walkframe 50	LX LY
+		walkframe 55	LX LY
+		walkframe 60	LX LY
+		walkframe 65	LX LY
+		
+		//	spin
+		{ event AE_CL_PLAYSOUND						8	"Player_Shared.Dash_Forward_FX" }
+
+		{ event AE_CL_CREATE_SWORD_EFFECT			18	"follow_attachment anim_attachment_S" }
+		
+		{ event AE_CL_PLAYSOUND						12	"Weapon_Blade.Whistle"}	
+		{ event AE_CL_PLAYWEAPONSOUND				14	"Weapon_Blade.Balanced" }
+		{ event AE_CL_PLAYSOUND						28	"Weapon_Blade.Whistle"}	
+		{ event AE_CL_PLAYWEAPONSOUND				35	"Weapon_Blade.Balanced" }
+		{ event AE_CL_PLAYCHARACTERSOUND			35	".B_Attack" }
+
+		{ event AE_CL_PLAYSOUND						45	"Player_Shared.Backflip" }		
+	}
+	
+	//====================================================
+	//
+	//	STRING 3
+	//
+	//====================================================
+
+	// $sequence b_s3_charge "anim_b_s3_charge" {
+	// 	ACT_BB_B_C3_CHARGE 1
+	// 	fps 29
+	// 	alignto reference 	
+	// }
+	
+	$animation a_b_s3_t1 "anim_b_s3_t1" frames 0 32
+	$sequence	b_s3_t1 {
+		a_b_s3_t1
+		ACT_BB_B_C3_T1 1
+		fps 30
+		alignto reference		
+		walkframe 5		LX LY
+		walkframe 10	LX LY 
+		walkframe 15	LX LY LZ
+		walkframe 20	LX LY LZ
+		walkframe 25	LX LY LZ
+		walkframe 30	LX LY LZ
+		walkframe 32	LX LY LZ
+
+						
+		{ event AE_CL_CREATE_SWORD_EFFECT			4	"follow_attachment anim_attachment_S" }	
+
+		{ event AE_CL_PLAYWEAPONSOUND				7	"Weapon_Blade.Balanced" }
+
+		{ event AE_CL_PLAYCHARACTERSOUND			17	".B_Attack" }	
+		{ event AE_CL_PLAYSOUND						17	"Player_Shared.Backflip" }		
+
+		{ event AE_CL_PLAYWEAPONSOUND				20	"Weapon_Blade.Balanced" }
+	}
+
+	//====================================================
+	//
+	//	LEFT
+	//
+	//====================================================
+	$animation a_b_left_t1 "anim_b_left_t1" frames 0 280
+	$sequence	b_left_t1 {
+		a_b_left_t1
+		ACT_BB_B_LEFT_T1 1
+		fps 170
+		alignto reference		
+		walkframe 50	LX LY
+		walkframe 100	LX LY
+		walkframe 150	LX LY
+		walkframe 200	LX LY
+		walkframe 250	LX LY
+		walkframe 270	LX LY
+		walkframe 280	LX LY
+						
+		{ event AE_CL_CREATE_SWORD_EFFECT			4	"follow_attachment anim_attachment_S" }	
+
+		{ event AE_CL_PLAYCHARACTERSOUND			6	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				9	"Weapon_Blade.Balanced" }
+
+		{ event AE_CL_PLAYSOUND						19	"Player_Shared.Backflip" }			
+	}
+
+	$animation a_b_left_t2 "anim_b_left_t2" frames 0 170
+	$sequence	b_left_t2 {
+		a_b_left_t2
+		ACT_BB_B_LEFT_T2 1
+		fps 200
+		alignto reference		
+		walkframe 50		LX LY
+		walkframe 100	LX LY
+		walkframe 150	LX LY
+		walkframe 170	LX LY
+						
+		{ event AE_CL_CREATE_SWORD_EFFECT			4	"follow_attachment anim_attachment_S" }	
+
+		{ event AE_CL_PLAYCHARACTERSOUND			6	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				9	"Weapon_Blade.Balanced" }
+
+		{ event AE_CL_PLAYSOUND						19	"Player_Shared.Backflip" }			
+	}
+
+	
+	$animation a_b_left_t3 "anim_b_left_t3" frames 0 42
+	$sequence	b_left_t3 {
+		a_b_left_t3
+		ACT_BB_B_LEFT_T3 1
+		fps 26
+		alignto reference		
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 15	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 30	LX LY
+		walkframe 35	LX LY
+		walkframe 40	LX LY
+		walkframe 42	LX LY
+						
+		{ event AE_CL_CREATE_SWORD_EFFECT			4	"follow_attachment anim_attachment_S" }	
+
+		{ event AE_CL_PLAYCHARACTERSOUND			6	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				9	"Weapon_Blade.Balanced" }
+
+		{ event AE_CL_PLAYWEAPONSOUND				20	"Weapon_Blade.Balanced" }
+
+		{ event AE_CL_PLAYSOUND						17	"Player_Shared.Backflip" }			
+	}
+
+	//====================================================
+	//
+	//	RIGHT
+	//
+	//====================================================
+
+	$animation a_b_right_t1 "anim_b_right_t1" frames 0 75
+	$sequence	b_right_t1 {
+		a_b_right_t1
+		ACT_BB_B_RIGHT_T1 1
+		fps 36
+		alignto reference		
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 15	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 30	LX LY
+		walkframe 35	LX LY
+		walkframe 40	LX LY
+		walkframe 45	LX LY
+		walkframe 50	LX LY
+		walkframe 55	LX LY
+		walkframe 60	LX LY
+		walkframe 65	LX LY
+		walkframe 70	LX LY		
+		walkframe 75	LX LY		
+
+		{ event AE_CL_CREATE_SWORD_EFFECT			4	"follow_attachment anim_attachment_S" }	
+
+		{ event AE_CL_PLAYSOUND						4	"Player_Shared.Backflip" }		
+		{ event AE_CL_PLAYSOUND						9	"Weapon_Blade.Whistle"}	
+		{ event AE_CL_PLAYWEAPONSOUND				13	"Weapon_Blade.Balanced" }
+		{ event AE_CL_PLAYSOUND						19	"Player_Shared.Backflip" }			
+		{ event AE_CL_PLAYSOUND						30	"Player_Shared.Backflip" }
+		{ event AE_CL_PLAYWEAPONSOUND				50	"Weapon_Blade.Balanced" }	
+		{ event AE_CL_PLAYCHARACTERSOUND			50	".B_Attack" }			
+	}
+
+	$animation a_b_right_t2 "anim_b_right_t2" frames 0 42
+	$sequence	b_right_t2 {
+		a_b_right_t2
+		ACT_BB_B_RIGHT_T2 1
+		fps 40
+		alignto reference		
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 15	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 30	LX LY
+		walkframe 35	LX LY
+		walkframe 40	LX LY
+		walkframe 42	LX LY	
+
+		{ event AE_CL_CREATE_SWORD_EFFECT			4	"follow_attachment anim_attachment_S" }	
+
+		{ event AE_CL_PLAYSOUND						4	"Player_Shared.Backflip" }		
+		{ event AE_CL_PLAYSOUND						9	"Weapon_Blade.Whistle"}	
+		{ event AE_CL_PLAYWEAPONSOUND				15	"Weapon_Blade.Balanced" }
+		{ event AE_CL_PLAYCHARACTERSOUND			15	".B_Attack" }			
+	}	
+
+
+	$animation a_b_right_t3 "anim_b_right_t3" frames 0 80
+	$sequence	b_right_t3 {
+		a_b_right_t3
+		ACT_BB_B_RIGHT_T3 1
+		fps 32
+		alignto reference		
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 15	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 30	LX LY
+		walkframe 35	LX LY
+		walkframe 40	LX LY
+		walkframe 45	LX LY
+		walkframe 50	LX LY
+		walkframe 55	LX LY
+		walkframe 60	LX LY
+		walkframe 65	LX LY
+		walkframe 70	LX LY		
+		walkframe 75	LX LY
+		walkframe 80	LX LY
+						
+		{ event AE_CL_CREATE_SWORD_EFFECT			4	"follow_attachment anim_attachment_S" }	
+
+		{ event AE_CL_PLAYSOUND						4	"Player_Shared.Backflip" }		
+		{ event AE_CL_PLAYSOUND						9	"Weapon_Blade.Whistle"}	
+		{ event AE_CL_PLAYWEAPONSOUND				13	"Weapon_Blade.Balanced" }
+		{ event AE_CL_PLAYSOUND						19	"Player_Shared.Backflip" }			
+		{ event AE_CL_PLAYSOUND						30	"Player_Shared.Backflip" }
+		{ event AE_CL_PLAYWEAPONSOUND				50	"Weapon_Blade.Balanced" }	
+		{ event AE_CL_PLAYCHARACTERSOUND			50	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				68	"Weapon_Blade.Balanced" }
+	}		

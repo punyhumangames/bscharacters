@@ -1,0 +1,286 @@
+//====================================================
+//
+//	RYOKU HEAVY STANCE IDLE + RUN
+//
+//====================================================	
+
+	$sequence h_idle "anim_h_idle"{
+		ACT_BB_H_IDLE 1
+		fps 16				
+		loop
+		cmdlist lockfeet
+	}
+
+	//	basically a copy of judgement's b run
+	$animation a_h_run_base anim_h_run_gesture cmdlist ikrules_run_idle
+
+	$sequence h_run_mod anim_h_run_gesture { 
+		ACT_BB_H_RUN_UPPER 1
+		weightlist SlowUpperbodyRightArmsReplace 
+		alignto reference
+	} 
+
+	$sequence h_run { 
+		a_RunNW_IK a_RunN_IK a_RunNE_IK 
+		a_RunW_IK a_h_run_base a_RunE_IK 
+		a_RunSW_IK a_RunS_IK a_RunSE_IK 
+		blendwidth 3 blend move_y -1 1 blend move_x 1 -1 loop
+		ACT_BB_H_RUN 1
+		alignto reference
+		addlayer h_run_mod
+		{ event AE_BB_FOOTSTEP_SPLASH	6	"0" }
+		{ event AE_BB_FOOTSTEP_SPLASH	15	"1" }
+	}
+
+//====================================================
+//
+//	RYOKU IDLE TURNING
+//
+//====================================================	
+
+
+	$sequence h_turn_left {
+	anim_h_idle_turn_left_90
+	activity ACT_BB_H_TURN_LEFT 1
+	alignto h_idle
+	fps 40
+	//Weightlist lowerbody
+	LZR
+	loop
+	ikrule lfoot footstep range 3 18 22 21 height $STANDARD_IK_HEIGHT$ usesequence
+	ikrule rfoot footstep range 5 19 21 20 height $STANDARD_IK_HEIGHT$ usesequence
+	}	
+	
+//====================================================
+//
+//	STRING 1
+//
+//====================================================
+//	string 1 charge
+$sequence h_s1_charge "anim_h_s1_charge"{
+	ACT_BB_H_C1_CHARGE 1
+	alignto h_idle	
+	fps 14
+}
+
+//	string 1 running charge
+$sequence h_s1_charge_running "anim_h_s1_charge_running" {
+	ACT_BB_H_C1_CHARGE_RUNNING 1
+	fps 14
+	weightlist SlowerUpperbodyBlend 
+	alignto h_idle 	
+	iklock lfoot 1 0 iklock rfoot 1 0 
+}
+
+//	string 1 tiered attacks
+$animation a_h_s1_t1 "anim_h_s1_t1" frames 0 30
+$sequence	h_s1_t1 {
+	a_h_s1_t1
+	ACT_BB_H_C1_T1 1
+	fps 20
+	alignto h_idle		
+	walkframe 5		LX LY
+	walkframe 10	LX LY
+	walkframe 15	LX LY 
+	walkframe 20	LX LY
+	walkframe 25	LX LY 
+	walkframe 30	LX LY
+
+	{ event AE_CL_PLAYCHARACTERSOUND			8	".H_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND				8	"Weapon_Blade.Heavy" }	
+	{ event AE_CL_CREATE_SWORD_EFFECT 			8 "follow_attachment anim_attachment_S" }
+}
+
+$animation a_h_s1_t2 "anim_h_s1_t2" frames 0 24
+$sequence	h_s1_t2 {
+	a_h_s1_t2
+	ACT_BB_H_C1_T2 1
+	fps 24
+	alignto reference		
+	walkframe 5		LX LY
+	walkframe 10	LX LY
+	walkframe 15	LX LY 
+	walkframe 20	LX LY
+	walkframe 24	LX LY 
+
+	{ event AE_CL_PLAYCHARACTERSOUND			2	".H_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND				2	"Weapon_Blade.Heavy" }	
+	{ event AE_CL_CREATE_SWORD_EFFECT 			2 "follow_attachment anim_attachment_S" }
+}
+
+$animation a_h_s1_t3 "anim_h_s1_t3" frames 0 27
+$sequence	h_s1_t3 {
+	a_h_s1_t3
+	ACT_BB_H_C1_T3 1
+	fps 22	
+	alignto h_idle		
+	walkframe 5		LX LY LZ
+	walkframe 10	LX LY LZ
+	walkframe 15	LX LY LZ 
+	walkframe 20	LX LY LZ
+	walkframe 25	LX LY LZ 
+	walkframe 27	LX LY LZ
+
+	{ event AE_CL_PLAYCHARACTERSOUND			1	".H_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND				1	"Weapon_Blade.Heavy" }	
+	{ event AE_CL_CREATE_SWORD_EFFECT 			1 "follow_attachment anim_attachment_S" }
+}
+
+//====================================================
+//
+//	LEFT
+//
+//====================================================
+//	left charge
+$sequence h_left_charge "anim_h_left_charge"{
+	ACT_BB_H_LEFT_CHARGE 1
+	alignto h_idle	
+	fps 14
+}
+
+//	left running charge
+$sequence h_left_charge_running "anim_h_left_charge_running" {
+	ACT_BB_H_LEFT_CHARGE_RUNNING 1
+	fps 14
+	weightlist SlowerUpperbodyBlend 
+	alignto h_idle 	
+	iklock lfoot 1 0 iklock rfoot 1 0 
+}
+
+$animation a_h_left_t1 "anim_h_left_t1" frames 0 32
+$sequence	h_left_t1 {
+	a_h_left_t1
+	ACT_BB_H_left_T1 1
+	fps 22
+	alignto h_idle		
+	walkframe 5		LX LY
+	walkframe 10	LX LY
+	walkframe 15	LX LY 
+	walkframe 20	LX LY
+	walkframe 25	LX LY 
+	walkframe 30	LX LY
+	walkframe 32	LX LY
+
+	{ event AE_CL_PLAYCHARACTERSOUND			4	".H_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND				4	"Weapon_Blade.Heavy" }	
+	{ event AE_CL_PLAYSOUND						25	"Weapon_Blade.Whistle"}	
+}
+
+$animation a_h_left_t2 "anim_h_left_t2" frames 0 23
+$sequence	h_left_t2 {
+	a_h_left_t2
+	ACT_BB_H_left_T2 1
+	fps 20
+	alignto h_idle		
+	walkframe 5		LX LY
+	walkframe 10	LX LY
+	walkframe 15	LX LY 
+	walkframe 20	LX LY
+	walkframe 23	LX LY
+
+	{ event AE_CL_PLAYCHARACTERSOUND			4	".H_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND				4	"Weapon_Blade.Heavy" }	
+	{ event AE_CL_PLAYSOUND						18	"Weapon_Blade.Whistle"}	
+}
+
+$animation a_h_left_t3 "anim_h_left_t3" frames 0 35
+$sequence	h_left_t3 {
+	a_h_left_t3
+	ACT_BB_H_left_T3 1
+	fps 19
+	alignto h_idle		
+	walkframe 5		LX LY
+	walkframe 10	LX LY
+	walkframe 15	LX LY 
+	walkframe 20	LX LY
+	walkframe 25	LX LY
+	walkframe 30	LX LY
+	walkframe 35	LX LY
+
+	{ event AE_CL_PLAYWEAPONSOUND				4	"Weapon_Blade.Heavy" }	
+
+	{ event AE_CL_PLAYCHARACTERSOUND			8	".H_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND				8	"Weapon_Blade.Heavy" }	
+
+	{ event AE_CL_PLAYSOUND						29	"Weapon_Blade.Whistle"}	
+}
+
+
+
+//====================================================
+//
+//	RIGHT
+//
+//====================================================
+//	right charge
+$sequence h_right_charge "anim_h_right_charge"{
+	ACT_BB_H_RIGHT_CHARGE 1
+	alignto h_idle	
+	fps 14
+}
+
+//	right running charge
+$sequence h_right_charge_running "anim_h_right_charge_running" {
+	ACT_BB_H_RIGHT_CHARGE_RUNNING 1
+	fps 14
+	weightlist SlowerUpperbodyBlend 
+	alignto h_idle 	
+	iklock lfoot 1 0 iklock rfoot 1 0 
+}
+
+
+$animation a_h_right_t1 "anim_h_right_t1" frames 0 30
+$sequence	h_right_t1 {
+	a_h_right_t1
+	ACT_BB_H_RIGHT_T1 1
+	fps 22
+	alignto h_idle		
+	walkframe 5		LX LY
+	walkframe 10	LX LY
+	walkframe 15	LX LY 
+	walkframe 20	LX LY
+	walkframe 25	LX LY 
+	walkframe 30	LX LY
+
+	{ event AE_CL_PLAYCHARACTERSOUND			8	".H_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND				8	"Weapon_Blade.Heavy" }	
+}
+
+$animation a_h_right_t2 "anim_h_right_t2" frames 0 29
+$sequence	h_right_t2 {
+	a_h_right_t2
+	ACT_BB_H_RIGHT_T2 1
+	fps 24
+	alignto h_idle		
+	walkframe 5		LX LY
+	walkframe 10	LX LY
+	walkframe 15	LX LY 
+	walkframe 20	LX LY
+	walkframe 25	LX LY
+	walkframe 29	LX LY
+
+	{ event AE_CL_PLAYCHARACTERSOUND			6	".H_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND				6	"Weapon_Blade.Heavy" }	
+}
+
+$animation a_h_right_t3 "anim_h_right_t3" frames 0 45
+$sequence	h_right_t3 {
+	a_h_right_t3
+	ACT_BB_H_RIGHT_T3 1
+	fps 22
+	alignto h_idle		
+	walkframe 5		LX LY
+	walkframe 10	LX LY
+	walkframe 15	LX LY 
+	walkframe 20	LX LY
+	walkframe 25	LX LY
+	walkframe 30	LX LY
+	walkframe 35	LX LY
+	walkframe 40	LX LY
+	walkframe 45	LX LY
+	
+	{ event AE_CL_PLAYWEAPONSOUND				11	"Weapon_Blade.Heavy" }	
+
+	{ event AE_CL_PLAYCHARACTERSOUND			20	".H_Attack" }		
+	{ event AE_CL_PLAYWEAPONSOUND				20	"Weapon_Blade.Heavy" }	
+}

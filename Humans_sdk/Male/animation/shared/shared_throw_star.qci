@@ -1,0 +1,29 @@
+//-----------------
+//	?!
+//-----------------
+
+$sequence throw_star anim_throw_star {
+	ACT_BB_THROW_STAR 1 	
+	frames 0 48
+	fps 31
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX
+	walkframe 30	LX
+	walkframe 35	LX
+	walkframe 40	LX
+	walkframe 45	LX
+	walkframe 48	LX
+	{ event AE_CL_PLAYSOUND	2	"Player_Shared.LeatherTighten" }
+}
+
+$sequence block_star anim_star_block {
+	ACT_BB_BLOCK_THROWABLE 1 	
+	frames 0 12
+	fps 20
+	alignto idle_lower
+	weightlist HipsUpperbodyBlend
+	iklock lfoot 1 0 iklock rfoot 1 0 
+}

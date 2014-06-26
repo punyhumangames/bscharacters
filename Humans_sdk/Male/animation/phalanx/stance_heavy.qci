@@ -1,0 +1,474 @@
+//====================================================
+//
+//	PHALANX HEAVY STANCE IDLE + RUN
+//
+//====================================================	
+
+	$sequence h_idle "anim_h_idle"{
+		ACT_BB_H_IDLE 1
+		fps 16		
+		loop
+		cmdlist lockfeet
+	}
+	$animation a_h_RunZero "anim_h_idle" 
+	$animation a_h_idle_base anim_h_idle frame 0 0 
+	$animation a_h_run_base "../shared/anim_h_run_gesture" cmdlist ikrules_run_idle
+
+	$sequence h_run_mod "../shared/RunN" { 
+		ACT_BB_H_RUN_UPPER 1
+		//X Y rotateto 0 
+		alignto reference 
+		//worldspaceblend a_h_run_base 
+		weightlist UpperbodyBlendNoHead
+	} 
+
+	$animation h_run_upper_run anim_h_run_upper fps 30 alignto h_idle weightlist UpperBodyRun
+	$animation h_run_upper_idle anim_h_run_upper_idle fps 30 alignto h_idle weightlist UpperBodyRun 
+	
+	$sequence h_run_upper {
+		h_run_upper_run h_run_upper_run h_run_upper_run 
+		h_run_upper_run h_run_upper_idle h_run_upper_run 
+		h_run_upper_run h_run_upper_run h_run_upper_run 
+		blendwidth 3 blend move_y -1 1 blend move_x 1 -1 loop
+		weightlist UpperBodyRun
+		iklock lfoot 1 0 iklock rfoot 1 0 
+	}
+
+	$sequence h_run { 
+		a_RunNW_IK a_RunN_IK a_RunNE_IK 
+		a_RunW_IK a_h_run_base a_RunE_IK 
+		a_RunSW_IK a_RunS_IK a_RunSE_IK 
+		blendwidth 3 blend move_y -1 1 blend move_x 1 -1 loop
+		addlayer h_run_upper
+		ACT_BB_H_RUN 1
+		{ event AE_BB_FOOTSTEP_SPLASH	6	"0" }
+		{ event AE_BB_FOOTSTEP_SPLASH	15	"1" }
+	}
+
+//====================================================
+//
+//	PHALANX IDLE TURNING
+//
+//====================================================	
+
+
+$sequence h_turn_left {
+	anim_h_idle_turn_left_90
+	activity ACT_BB_H_TURN_LEFT 1
+	alignto h_idle
+	fps 40
+	//Weightlist lowerbody
+	LZR
+	loop
+	ikrule lfoot footstep range 3 18 22 21 height $STANDARD_IK_HEIGHT$ usesequence
+	ikrule rfoot footstep range 3 16 18 17 height $STANDARD_IK_HEIGHT$ usesequence
+	}
+	
+	
+//====================================================
+//
+//	PHALANX HEAVY BLOCKING
+//
+//====================================================	
+
+$sequence h_block "anim_h_block"{ 
+	ACT_BB_H_BLOCK 1
+	fps 50
+	alignto reference
+}
+	
+//====================================================
+//
+//	STRING 1
+//
+//====================================================
+
+	//	string 1 charge
+	$sequence h_s1_charge "anim_h_s1_charge"{
+		ACT_BB_H_C1_CHARGE 1
+		alignto reference		
+		fps 40
+		walkframe 45	LX	
+	}	
+
+	//	PLACEHOLDER
+	$sequence h_c1_charge_running "../old_backup/anim_h_c1_charge_running" {
+		ACT_BB_H_C1_CHARGE_RUNNING 1
+		fps 40
+		weightlist SlowerUpperbodyBlend 
+		alignto reference 	
+		iklock lfoot 1 0 iklock rfoot 1 0 
+	}
+	
+	//	string 1 charge running
+	//	PLACEHOLDER
+	
+	//	string 1 tiered attacks
+	$animation a_h_s1_t1 "anim_h_s1_t1" frames 0 88
+	$sequence	h_s1_t1 {
+		a_h_s1_t1
+		ACT_BB_H_C1_T1 1
+		fps 60
+		alignto reference		
+		walkframe 5		LX
+		walkframe 10	LX
+		walkframe 20	LX		
+		walkframe 30	LX
+		walkframe 40	LX
+		walkframe 50	LX
+		walkframe 60	LX
+		walkframe 70	LX
+		walkframe 80	LX		
+		walkframe 88	LX
+		{ event AE_CL_PLAYCHARACTERSOUND			24	".H_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				24	"Weapon_Blade.Heavy" }
+		{ event AE_BB_CREATE_TRACEMODEL		34	"models/tracemodels/sword_tracer_slash.mdl 26 1 1.5" }
+	}	
+	
+	$animation a_h_s1_t2 "anim_h_s1_t2"
+	$sequence	h_s1_t2 {
+		a_h_s1_t2
+		ACT_BB_H_C1_T2 1
+		fps 50
+		snap	
+		alignto reference		
+		walkframe 5		LX
+		walkframe 10	LX
+		walkframe 15	LX
+		walkframe 20	LX
+		walkframe 25	LX
+		walkframe 30	LX
+		walkframe 35	LX
+		walkframe 40	LX
+		walkframe 45	LX		
+		walkframe 50	LX		
+		walkframe 52	LX		
+		{ event AE_CL_PLAYCHARACTERSOUND			6	".H_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				8	"Weapon_Blade.Heavy" }
+		{ event AE_BB_CREATE_TRACEMODEL		15	"models/tracemodels/sword_tracer_slash.mdl 30 1 1.5" }
+
+	}	
+	
+	$animation a_h_s1_t3 "anim_h_s1_t3"
+	$sequence	h_s1_t3 {
+		a_h_s1_t3
+		ACT_BB_H_C1_T3 1
+		fps 40
+		snap	
+		alignto reference		
+		walkframe 5		LX
+		walkframe 10	LX
+		walkframe 15	LX
+		walkframe 20	LX
+		walkframe 25	LX
+		walkframe 30	LX
+		walkframe 35	LX
+		walkframe 40	LX
+		walkframe 45	LX		
+		walkframe 50	LX		
+		walkframe 55	LX		
+		walkframe 60	LX	
+		walkframe 65	LX		
+		walkframe 70	LX	
+		walkframe 75	LX		
+		walkframe 80	LX	
+		walkframe 85	LX	
+		walkframe 87	LX	
+		{ event AE_CL_PLAYCHARACTERSOUND			6	".H_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				8	"Weapon_Blade.Heavy" }
+		{ event AE_BB_CREATE_TRACEMODEL		11	"models/tracemodels/sword_tracer_slash.mdl 40 1 1.5" }
+	}			
+	
+	
+	
+//====================================================
+//
+//	STRING 2
+//
+//====================================================		
+	
+	//	string 2 charge
+	$sequence h_s2_charge "anim_h_s2_charge"{
+		ACT_BB_h_C2_CHARGE 1
+		alignto reference		
+		fps 40
+		walkframe 45	LX	
+	}	
+	
+	$animation a_h_s2_t1 "anim_h_s2_t1"
+	$sequence	h_s2_t1 {
+		a_h_s2_t1
+		ACT_BB_H_C2_T1 1
+		fps 40
+		snap	
+		alignto reference		
+		walkframe 5		LX
+		walkframe 10	LX
+		walkframe 15	LX
+		walkframe 20	LX
+		walkframe 25	LX
+		walkframe 30	LX
+		walkframe 35	LX
+		walkframe 40	LX
+		walkframe 45	LX		
+		walkframe 50	LX		
+		walkframe 55	LX		
+		walkframe 60	LX	
+		walkframe 65	LX		
+		walkframe 70	LX	
+		walkframe 75	LX		
+		walkframe 80	LX	
+		walkframe 81	LX
+		{ event AE_CL_PLAYCHARACTERSOUND			6	".H_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				8	"Weapon_Blade.Heavy" }
+		{ event AE_BB_CREATE_TRACEMODEL		15	"models/tracemodels/sword_tracer_slash.mdl 42 1 1.5" }
+	}	
+	
+	$animation a_h_s2_t2 "anim_h_s2_t2"
+	$sequence	h_s2_t2 {
+		a_h_s2_t2
+		ACT_BB_H_C2_T2 1
+		fps 50
+		snap	
+		alignto reference		
+		walkframe 5		LX
+		walkframe 10	LX
+		walkframe 15	LX
+		walkframe 20	LX
+		walkframe 25	LX
+		walkframe 30	LX
+		walkframe 35	LX
+		walkframe 40	LX
+		walkframe 45	LX		
+		walkframe 50	LX		
+		walkframe 55	LX		
+		walkframe 60	LX	
+		walkframe 65	LX		
+		walkframe 70	LX	
+		walkframe 75	LX		
+		walkframe 80	LX	
+		walkframe 85	LX		
+		walkframe 90	LX	
+		walkframe 93	LX		
+		{ event AE_CL_PLAYCHARACTERSOUND			6	".H_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				8	"Weapon_Blade.Heavy" }
+		{ event AE_BB_CREATE_TRACEMODEL		16	"models/tracemodels/sword_tracer_slash.mdl 32 1 1.5" }
+	}		
+	
+	$animation a_h_s2_t3 "anim_h_s2_t3"
+	$sequence	h_s2_t3 {
+		a_h_s2_t3
+		ACT_BB_H_C2_T3 1
+		fps 40
+		snap	
+		alignto reference		
+		walkframe 5		LX
+		walkframe 10	LX
+		walkframe 15	LX
+		walkframe 20	LX
+		walkframe 25	LX
+		walkframe 30	LX
+		walkframe 35	LX
+		walkframe 40	LX
+		walkframe 45	LX		
+		walkframe 50	LX		
+		walkframe 55	LX		
+		walkframe 60	LX	
+		walkframe 65	LX		
+		walkframe 70	LX	
+		walkframe 75	LX		
+		walkframe 80	LX	
+		walkframe 85	LX		
+		walkframe 90	LX	
+		walkframe 95	LX		
+		walkframe 100	LX	
+		walkframe 105	LX		
+		{ event AE_CL_PLAYCHARACTERSOUND			6	".H_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				8	"Weapon_Blade.Heavy" }
+		{ event AE_BB_CREATE_TRACEMODEL		22	"models/tracemodels/sword_tracer_slash.mdl 37 1 1.5" }
+	}		
+
+
+//====================================================
+//
+//	Left
+//
+//====================================================	
+
+	//	left charge
+	$sequence h_left_charge "anim_h_left_charge"{
+		ACT_BB_H_LEFT_CHARGE 1
+		alignto reference		
+		fps 40
+		walkframe 45	LX LY
+	}	
+	
+	//	PLACEHOLDER
+	$sequence h_left_charge_running "../old_backup/anim_h_left_charge_running" {
+		ACT_BB_H_LEFT_CHARGE_RUNNING 1
+		fps 40
+		weightlist SlowerUpperbodyBlend 
+		alignto h_idle 	
+		iklock lfoot 1 0 iklock rfoot 1 0 
+	}
+
+	$animation a_h_left_t1 "anim_h_left_t1"
+	$sequence	h_left_t1 {
+		a_h_left_t1
+		ACT_BB_H_LEFT_T1 1
+		fps 30	
+		alignto h_idle		
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 15	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 30	LX LY
+		walkframe 35	LX LY
+		walkframe 40	LX LY	
+		walkframe 45	LX LY	
+		{ event AE_CL_PLAYCHARACTERSOUND			8	".H_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				11	"Weapon_Blade.Heavy" }
+		{ event AE_BB_CREATE_TRACEMODEL		8	"models/tracemodels/sword_tracer_slash.mdl 13 1 1.5" }
+	}			
+
+	$animation a_h_left_t2 "anim_h_left_t2"
+	$sequence	h_left_t2 {
+		a_h_left_t2
+		ACT_BB_H_LEFT_T2 1
+		fps 15
+		alignto h_idle		
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 15	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 30	LX LY
+		walkframe 35	LX LY
+		walkframe 40	LX LY
+		walkframe 45	LX LY		
+		walkframe 50	LX LY		
+		walkframe 55	LX LY		
+		walkframe 60	LX LY	
+		{ event AE_CL_PLAYCHARACTERSOUND			6	".H_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				8	"Weapon_Blade.Heavy" }
+		{ event AE_BB_CREATE_TRACEMODEL		0	"models/tracemodels/sword_tracer_slash.mdl 19 1 1.5" }
+	}			
+
+	$animation a_h_left_t3 "anim_h_left_t3"
+	$sequence	h_left_t3 {
+		a_h_left_t3
+		ACT_BB_H_LEFT_T3 1
+		fps 20
+		alignto h_idle		
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 15	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 30	LX LY
+		walkframe 35	LX LY
+		walkframe 40	LX LY
+		walkframe 45	LX LY		
+		walkframe 50	LX LY		
+		walkframe 55	LX LY		
+		walkframe 60	LX LY	
+		walkframe 65	LX LY		
+		walkframe 70	LX LY	
+		walkframe 75	LX LY	
+		{ event AE_CL_PLAYCHARACTERSOUND			14	".H_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				14	"Weapon_Blade.Heavy" }
+		{ event AE_BB_CREATE_TRACEMODEL				10	"models/tracemodels/sword_tracer_slash.mdl 28 1 1.5" }
+	}			
+
+
+//====================================================
+//
+//	Right
+//
+//====================================================	
+
+	//	right charge
+	$sequence h_right_charge "anim_h_right_charge"{
+		ACT_BB_H_RIGHT_CHARGE 1
+		alignto reference		
+		fps 40
+		walkframe 40	LX LY
+	}	
+
+	//	PLACEHOLDER
+	$sequence h_right_charge_running "../old_backup/anim_h_right_charge_running" {
+		ACT_BB_H_RIGHT_CHARGE_RUNNING 1
+		fps 40
+		weightlist SlowerUpperbodyBlend 
+		alignto h_idle 	
+		iklock lfoot 1 0 iklock rfoot 1 0 
+	}
+
+	$animation a_h_right_t1 "anim_h_right_t1" frames 0 80
+	$sequence	h_right_t1 {
+		a_h_right_t1
+		ACT_BB_H_RIGHT_T1 1
+		fps 50
+		alignto h_idle		
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 20	LX LY
+		walkframe 30	LX LY
+		walkframe 40	LX LY
+		walkframe 50	LX LY
+		walkframe 60	LX LY
+		walkframe 70	LX LY
+		walkframe 80	LX LY
+		{ event AE_CL_PLAYCHARACTERSOUND			37	".H_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				37	"Weapon_Blade.Heavy" }
+	}			
+
+	$animation a_h_right_t2 "anim_h_right_t2"
+	$sequence	h_right_t2 {
+		a_h_right_t2
+		ACT_BB_H_RIGHT_T2 1
+		fps 15
+		alignto h_idle		
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 15	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 30	LX LY
+		walkframe 35	LX LY
+		walkframe 40	LX LY
+		walkframe 45	LX LY		
+		walkframe 50	LX LY		
+		walkframe 52	LX LY		
+		{ event AE_CL_PLAYCHARACTERSOUND			6	".H_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				8	"Weapon_Blade.Heavy" }
+		{ event AE_BB_CREATE_TRACEMODEL		0	"models/tracemodels/sword_tracer_slash.mdl 19 1 1.5" }
+	}			
+
+	$animation a_h_right_t3 "anim_h_right_t3"
+	$sequence	h_right_t3 {
+		a_h_right_t3
+		ACT_BB_H_RIGHT_T3 1
+		fps 20
+		alignto reference		
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 15	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 30	LX LY
+		walkframe 35	LX LY
+		walkframe 40	LX LY
+		walkframe 45	LX LY		
+		walkframe 50	LX LY		
+		walkframe 55	LX LY		
+		walkframe 60	LX LY	
+		walkframe 65	LX LY		
+		walkframe 70	LX LY	
+		walkframe 75	LX LY	
+		{ event AE_CL_PLAYCHARACTERSOUND			14	".H_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				14	"Weapon_Blade.Heavy" }
+		{ event AE_BB_CREATE_TRACEMODEL				10	"models/tracemodels/sword_tracer_slash.mdl 33 1 1.5" }
+	}			
+

@@ -1,0 +1,12 @@
+$sequence kick anim_kick {
+	ACT_BB_KICK 1 	
+	alignto reference
+	fps 26		
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 26	LX
+		
+	{ event AE_CL_PLAYSOUND						14	"Player_Shared.FallHitGround" }		
+}

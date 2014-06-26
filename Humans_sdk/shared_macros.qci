@@ -1,0 +1,4 @@
+$cmdlist shared_charge_run_options {
+	weightlist AttackChargeRun 
+	weightlist NoHead 
+}

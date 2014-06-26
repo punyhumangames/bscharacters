@@ -1,0 +1,45 @@
+//$ikchain rhand "valvebiped.Bip01_R_Hand" Z 0 knee 0.707 0.707 0
+//$ikchain lhand "valvebiped.Bip01_L_Hand" Z 0 knee 0.707 0.707 0
+$ikchain rfoot "valvebiped.Bip01_R_Foot" Z 0 knee 0.707 -0.707 0 pad 5 center 4 0 0
+$ikchain lfoot "valvebiped.Bip01_L_Foot" Z 0 knee 0.707 -0.707 0 pad 5 center 4 0 0
+
+//$ikautoplaylock rhand 0.5 0.8
+//$ikautoplaylock lhand 0.5 0.8
+$ikautoplaylock rfoot 1.0 0.1
+$ikautoplaylock lfoot 1.0 0.1
+
+$definevariable STANDARD_IK_HEIGHT 20
+
+$cmdlist lockfeet {
+	ikrule lfoot footstep height $STANDARD_IK_HEIGHT$ floor 0
+	ikrule rfoot footstep height $STANDARD_IK_HEIGHT$ floor 0
+}
+
+$cmdlist lockfeetandlefthand {
+	ikrule lfoot footstep height $STANDARD_IK_HEIGHT$ floor 0
+	ikrule rfoot footstep height $STANDARD_IK_HEIGHT$ floor 0
+	ikrule lhand touch "ValveBiped.Bip01_R_Hand"
+}
+
+$cmdlist lockfeetnolefthand {
+	ikrule lfoot footstep height $STANDARD_IK_HEIGHT$ floor 0
+	ikrule rfoot footstep height $STANDARD_IK_HEIGHT$ floor 0
+	ikrule lhand release
+}
+
+$cmdlist releasefeet {
+	ikrule lfoot release
+	ikrule rfoot release
+}
+
+$cmdlist ikrules_run {
+	ikrule lfoot footstep range 6 7 9 11 height $STANDARD_IK_HEIGHT$
+	ikrule rfoot footstep range .. .. 0 2 height $STANDARD_IK_HEIGHT$
+	ikrule rfoot footstep range 14 16 .. .. height $STANDARD_IK_HEIGHT$
+}
+
+$cmdlist ikrules_run_idle {
+	ikrule lfoot footstep range .. 5 14 .. height $STANDARD_IK_HEIGHT$
+	ikrule rfoot footstep range .. .. 5 8 height $STANDARD_IK_HEIGHT$
+	ikrule rfoot footstep range 10 13 .. .. height $STANDARD_IK_HEIGHT$
+}

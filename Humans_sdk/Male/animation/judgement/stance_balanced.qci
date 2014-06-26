@@ -1,0 +1,477 @@
+//====================================================
+//
+//	JUDGEMENT BALANCED STANCE IDLE + RUN
+//
+//====================================================
+	
+	$sequence b_idle "anim_b_idle"{
+		ACT_BB_B_IDLE 1
+		fps 24
+		alignto reference
+		loop
+		cmdlist lockfeet
+	}
+	
+	$animation a_b_run_base anim_b_run_gesture cmdlist ikrules_run_idle
+
+	$sequence b_run_mod anim_b_run_gesture { 
+		ACT_BB_B_RUN_UPPER 1
+		weightlist SlowUpperbodyRightArmsReplace 
+		alignto reference
+	} 
+
+	$sequence b_run { 
+		a_RunNW_IK a_RunN_IK a_RunNE_IK
+		a_RunW_IK a_b_run_base a_RunE_IK
+		a_RunSW_IK a_RunS_IK a_RunSE_IK
+		blendwidth 3 blend move_y -1 1 blend move_x 1 -1 loop
+		ACT_BB_B_RUN 1
+		alignto reference
+		addlayer b_run_mod
+		{ event AE_BB_FOOTSTEP_SPLASH	6	"0" }
+		{ event AE_BB_FOOTSTEP_SPLASH	15	"1" }
+	}
+	
+//====================================================
+//
+//	JUDGEMENT IDLE TURNING
+//
+//====================================================	
+
+
+	$sequence b_turn_left {
+	anim_b_idle_turn_left_90
+	activity ACT_BB_B_TURN_LEFT 1
+	alignto b_idle
+	fps 40
+	//Weightlist lowerbody
+	LZR
+	loop
+	ikrule lfoot footstep range 3 18 22 21 height $STANDARD_IK_HEIGHT$ usesequence
+	ikrule rfoot footstep range 5 19 21 20 height $STANDARD_IK_HEIGHT$ usesequence
+	}
+
+
+	
+//====================================================
+//
+//	BALANCED STANCE BLOCKING
+//
+//====================================================	
+
+
+	$sequence b_block "../old_backup/anim_b_block"{ 
+		ACT_BB_B_BLOCK 1
+		fps 40
+		alignto reference	
+	}
+
+	//	PLACEHOLDER
+	$sequence b_block_blocked "../old_backup/anim_b_block_blocked"{ 
+		ACT_BB_B_BLOCK_BLOCKED 1
+		fps 40
+		alignto reference
+		X Y
+	}
+
+	$sequence b_block_left "../old_backup/anim_b_block_left"{ 
+		ACT_BB_B_BLOCK_LEFT 1
+		fps 40
+	}
+
+	$sequence b_block_right "../old_backup/anim_b_block_right"{ 
+		ACT_BB_B_BLOCK_RIGHT 1
+		fps 40
+	}
+	
+
+//====================================================
+//
+//	STRING 1
+//
+//====================================================
+
+	//	string 1 charge
+	$sequence b_s1_charge "anim_b_s1_charge"{
+		ACT_BB_B_C1_CHARGE 1
+		alignto reference	
+		fps 36
+	}
+
+	//	string 1 running charge
+	$sequence b_s1_charge_running "anim_b_s1_charge_running" {
+		ACT_BB_B_C1_CHARGE_RUNNING 1
+		fps 40
+		weightlist SlowerUpperbodyBlend 
+		alignto reference 	
+		iklock lfoot 1 0 iklock rfoot 1 0 
+	}
+
+	//	string 1 tiered attacks
+	$animation a_b_s1_t1 "anim_b_s1_t1" frames 0 45
+	$sequence	b_s1_t1 {
+		a_b_s1_t1
+		ACT_BB_B_C1_T1 1
+		fps 38
+		alignto reference	
+		walkframe 5		LX
+		walkframe 10	LX
+		walkframe 20	LX
+		walkframe 30	LX		
+		walkframe 40	LX		
+		walkframe 45	LX	
+		{ event AE_CL_PLAYCHARACTERSOUND					5	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND						5	"Weapon_Blade.Balanced" }	
+		{ event AE_CL_CREATE_SWORD_EFFECT					5 "follow_attachment anim_attachment_S" }
+	}
+
+	$animation a_b_s1_t2 "anim_b_s1_t2" frames 0 55
+	$sequence	b_s1_t2 {
+		a_b_s1_t2
+		ACT_BB_B_C1_T2 1
+		fps 58
+		alignto reference	
+		walkframe 5		LX
+		walkframe 10	LX
+		walkframe 20	LX
+		walkframe 30	LX
+		walkframe 40	LX	
+		walkframe 50	LX	
+		walkframe 55	LX
+		{ event AE_CL_PLAYCHARACTERSOUND					5	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND						5	"Weapon_Blade.Balanced" }		
+		{ event AE_CL_CREATE_SWORD_EFFECT					5 "follow_attachment anim_attachment_S" }
+	}
+
+
+	$animation a_b_s1_t3 "anim_b_s1_t3" frames 0 75
+	$sequence	b_s1_t3 {
+		a_b_s1_t3
+		ACT_BB_B_C1_T3 1
+		fps 40
+		alignto reference	
+		walkframe 5		LX
+		walkframe 10	LX
+		walkframe 20	LX
+		walkframe 30	LX
+		walkframe 40	LX	
+		walkframe 50	LX	
+		walkframe 60	LX
+		walkframe 70	LX
+		walkframe 75	LX	
+		{ event AE_CL_PLAYCHARACTERSOUND					6	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND						6	"Weapon_Blade.Balanced" }	
+		{ event AE_CL_PLAYMOVESOUND							28	"Weapon_Blade.Balanced" }			
+		{ event AE_CL_CREATE_SWORD_EFFECT 14 "follow_attachment anim_attachment_S" }
+		{ event AE_BB_CREATE_TRACEMODEL		34	"models/tracemodels/sword_tracer_stab.mdl 48 1 1.5" }
+	}
+
+//====================================================
+//
+//	STRING 2
+//
+//====================================================
+
+	//	string 2 charge
+	$sequence b_s2_charge "anim_b_s2_charge"{
+		ACT_BB_B_C2_CHARGE 1
+		alignto reference		
+		fps 36
+	}
+
+	//	string 2 tiered attacks
+	$animation a_b_s2_t1 "anim_b_s2_t1" frames 0 48
+	$sequence	b_s2_t1 {
+		a_b_s2_t1
+		ACT_BB_B_C2_T1 1
+		fps 45
+		alignto reference		
+		walkframe 5		LX
+		walkframe 10	LX
+		walkframe 20	LX
+		walkframe 30	LX
+		walkframe 40	LX	
+		walkframe 48	LX	
+		{ event AE_CL_PLAYCHARACTERSOUND					16	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND						16	"Weapon_Blade.Balanced" }			
+		{ event AE_CL_CREATE_SWORD_EFFECT					16 "follow_attachment anim_attachment_S" }
+	}
+
+	$animation a_b_s2_t2 "anim_b_s2_t2" frames 0 65
+	$sequence	b_s2_t2 {
+		a_b_s2_t2
+		ACT_BB_B_C2_T2 1
+		fps 44
+		alignto reference	
+		walkframe 5		LX
+		walkframe 10	LX
+		walkframe 20	LX
+		walkframe 30	LX
+		walkframe 40	LX	
+		walkframe 50	LX	
+		walkframe 60	LX
+		walkframe 65	LX
+		{ event AE_CL_PLAYCHARACTERSOUND					16	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND						16	"Weapon_Blade.Balanced" }			
+		{ event AE_CL_CREATE_SWORD_EFFECT 12 "follow_attachment anim_attachment_S" }
+	}
+
+
+	$animation a_b_s2_t3 "anim_b_s2_t3" frames 0 75
+	$sequence	b_s2_t3 {
+		a_b_s2_t3
+		ACT_BB_B_C2_T3 1
+		fps 48
+		alignto reference	
+		walkframe 5		LX
+		walkframe 10	LX
+		walkframe 20	LX
+		walkframe 30	LX
+		walkframe 40	LX	
+		walkframe 50	LX	
+		walkframe 60	LX
+		walkframe 70	LX
+		walkframe 75	LX		
+		{ event AE_CL_PLAYCHARACTERSOUND					8	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND						8	"Weapon_Blade.Balanced" }			
+		{ event AE_CL_CREATE_SWORD_EFFECT 15 "follow_attachment anim_attachment_S" }
+	}
+
+//====================================================
+//
+//	STRING 3
+//
+//====================================================
+
+
+	//	string 3 charge
+	$sequence b_s3_charge "anim_b_s3_charge"{
+		ACT_BB_B_C3_CHARGE 1
+		alignto reference		
+		fps 36
+		X Y		
+	}
+
+	//	string 3 tiered attacks
+	$animation a_b_s3_t1 "anim_b_s3_t1" frames 0 56
+	$sequence	b_s3_t1 {
+		a_b_s3_t1
+		ACT_BB_B_C3_T1 1
+		fps 40
+		alignto reference		
+		walkframe 5		LX
+		walkframe 10	LX
+		walkframe 20	LX
+		walkframe 30	LX
+		walkframe 40	LX	
+		walkframe 50	LX	
+		walkframe 56	LX
+		{ event AE_CL_PLAYCHARACTERSOUND					14	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND						14	"Weapon_Blade.Balanced" }		
+		{ event AE_CL_CREATE_SWORD_EFFECT					14 "follow_attachment anim_attachment_S" }
+	}
+
+	$animation a_b_s3_t2 "anim_b_s3_t2" frames 0 64
+	$sequence	b_s3_t2 {
+		a_b_s3_t2
+		ACT_BB_B_C3_T2 1
+		fps 45
+		alignto reference	
+		walkframe 5		LX
+		walkframe 10	LX
+		walkframe 20	LX
+		walkframe 30	LX
+		walkframe 40	LX	
+		walkframe 50	LX	
+		walkframe 60	LX
+		walkframe 64	LX
+		{ event AE_CL_PLAYCHARACTERSOUND					16	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND						16	"Weapon_Blade.Balanced" }		
+		{ event AE_CL_CREATE_SWORD_EFFECT					12 "follow_attachment anim_attachment_S" }
+	}
+
+
+	$animation a_b_s3_t3 "anim_b_s3_t3" frames 0 90
+	$sequence	b_s3_t3 {
+		a_b_s3_t3
+		ACT_BB_B_C3_T3 1
+		fps 45
+		alignto reference	
+		walkframe 5		LX
+		walkframe 10	LX
+		walkframe 20	LX
+		walkframe 30	LX
+		walkframe 40	LX	
+		walkframe 50	LX	
+		walkframe 60	LX
+		walkframe 70	LX
+		walkframe 80	LX
+		walkframe 90	LX	
+		{ event AE_CL_PLAYCHARACTERSOUND					8	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND						8	"Weapon_Blade.Balanced" }	
+		{ event AE_CL_PLAYMOVESOUND							40	"Weapon_Blade.Balanced" }			
+		{ event AE_CL_CREATE_SWORD_EFFECT					20 "follow_attachment anim_attachment_S" }
+		{ event AE_BB_CREATE_TRACEMODEL		36	"models/tracemodels/sword_tracer_stab.mdl 56 1 1.5" }
+	}
+
+
+//====================================================
+//
+//	LEFT
+//
+//====================================================
+
+	/*
+	//	left charge
+	$sequence h_left_charge "anim_h_left_charge" {
+		ACT_BB_H_LEFT_CHARGE 1
+		fps 30
+	}
+
+	//	left running charge
+	$sequence h_left_charge_running "anim_h_left_charge_running" {
+		ACT_BB_H_LEFT_CHARGE_RUNNING 1
+		fps 45
+		weightlist SlowerUpperbodyBlend 
+		weightlist NoHead	
+		alignto reference 	
+		iklock lfoot 1 0 iklock rfoot 1 0 
+	}
+	*/
+
+	//	left tiered attacks
+	$animation a_b_left_t1 "anim_b_left_t1" frames 0 27
+	$sequence	b_left_t1 {
+		a_b_left_t1
+		ACT_BB_b_LEFT_T1 1
+		fps 25
+		alignto reference	
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 15	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 27	LX LY
+		{ event AE_CL_PLAYCHARACTERSOUND					7	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND						7	"Weapon_Blade.Balanced" }				
+		{ event AE_CL_CREATE_SWORD_EFFECT 4 "follow_attachment anim_attachment_S" }
+	}
+	
+	$animation a_b_left_t2 "anim_b_left_t2" frames 0 60
+	$sequence	b_left_t2 {
+		a_b_left_t2
+		ACT_BB_b_LEFT_T2 1
+		fps 40
+		alignto reference	
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 29	LX LY		
+		walkframe 32	LX LY
+		walkframe 35	LX LY
+		walkframe 40	LX LY	
+		walkframe 50	LX LY	
+		walkframe 60	LX LY	
+		{ event AE_CL_PLAYCHARACTERSOUND					20	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND						20	"Weapon_Blade.Balanced" }				
+		{ event AE_CL_CREATE_SWORD_EFFECT 15 "follow_attachment anim_attachment_S" }
+	}
+	
+	$animation a_b_left_t3 "anim_b_left_t3" frames 0 80
+	$sequence	b_left_t3 {
+		a_b_left_t3
+		ACT_BB_b_LEFT_T3 1
+		fps 30
+		alignto reference	
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 29	LX LY		
+		walkframe 32	LX LY
+		walkframe 35	LX LY
+		walkframe 40	LX LY	
+		walkframe 50	LX LY	
+		walkframe 60	LX LY	
+		walkframe 70	LX LY	
+		walkframe 80	LX LY	
+		{ event AE_CL_PLAYCHARACTERSOUND					20	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND						20	"Weapon_Blade.Balanced" }		
+		{ event AE_CL_PLAYMOVESOUND							40	"Weapon_Blade.Balanced" }				
+		{ event AE_CL_CREATE_SWORD_EFFECT 15 "follow_attachment anim_attachment_S" }
+	}
+
+//====================================================
+//
+//	RIGHT
+//
+//====================================================
+
+	//	right tiered attacks
+	$animation a_b_right_t1 "anim_b_right_t1" frames 0 50
+	$sequence	b_right_t1 {
+		a_b_right_t1
+		ACT_BB_B_RIGHT_T1 1
+		fps 32
+		alignto reference			
+		walkframe 2		LX LY
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 29	LX LY		
+		walkframe 32	LX LY
+		walkframe 35	LX LY
+		walkframe 40	LX LY	
+		walkframe 50	LX LY	
+		{ event AE_CL_PLAYCHARACTERSOUND					16	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND						16	"Weapon_Blade.Balanced" }				
+		{ event AE_CL_CREATE_SWORD_EFFECT 15 "follow_attachment anim_attachment_S" }
+	}
+
+	$animation a_b_right_t2 "anim_b_right_t2" frames 0 60
+	$sequence	b_right_t2 {
+		a_b_right_t2
+		ACT_BB_B_RIGHT_T2 1
+		fps 44
+		alignto reference	
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 29	LX LY		
+		walkframe 32	LX LY
+		walkframe 35	LX LY
+		walkframe 40	LX LY	
+		walkframe 50	LX LY	
+		walkframe 60	LX LY	
+		{ event AE_CL_PLAYCHARACTERSOUND					25	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND						25	"Weapon_Blade.Balanced" }				
+		{ event AE_CL_CREATE_SWORD_EFFECT 15 "follow_attachment anim_attachment_S" }
+	}
+
+	$animation a_b_right_t3 "anim_b_right_t3" frames 0 85
+	$sequence	b_right_t3 {
+		a_b_right_t3
+		ACT_BB_B_RIGHT_T3 1
+		fps 33
+		alignto reference	
+		walkframe 5		LX LY
+		walkframe 10	LX LY
+		walkframe 20	LX LY
+		walkframe 25	LX LY
+		walkframe 29	LX LY		
+		walkframe 32	LX LY
+		walkframe 35	LX LY
+		walkframe 40	LX LY	
+		walkframe 50	LX LY	
+		walkframe 60	LX LY
+		walkframe 70	LX LY		
+		walkframe 80	LX LY	
+		walkframe 85	LX LY	
+		{ event AE_CL_PLAYWEAPONSOUND						25	"Weapon_Blade.Balanced" }	
+		{ event AE_CL_PLAYCHARACTERSOUND					40	".B_Attack" }	
+		{ event AE_CL_PLAYMOVESOUND							40	"Weapon_Blade.Balanced" }				
+		{ event AE_CL_CREATE_SWORD_EFFECT 15 "follow_attachment anim_attachment_S" }
+	}

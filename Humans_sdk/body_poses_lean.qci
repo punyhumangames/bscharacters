@@ -1,0 +1,104 @@
+//---------------------------------------
+// Head/chest/body posture animations
+
+$Weightlist UpperbodyReplaceSpineRot {
+	"ValveBiped.Bip01_Pelvis" 0.0 
+	"ValveBiped.Bip01_Spine"  1.0 
+	"ValveBiped.Bip01_L_Thigh" 0.0 
+	"ValveBiped.Bip01_R_Thigh" 0.0
+	"ValveBiped.Bip01_R_Clavicle" 0.0
+	"ValveBiped.Bip01_L_Clavicle" 0.0
+}
+
+$weightlist fullbody "ValveBiped.Bip01_Pelvis" 1.0 "ValveBiped.Bip01_L_Clavicle" 0.0 "ValveBiped.Bip01_R_Clavicle" 0.0
+$weightlist fullspine "ValveBiped.Bip01_Pelvis" 1.0 "ValveBiped.Bip01_L_Clavicle" 0.0 "ValveBiped.Bip01_R_Clavicle" 0.0 "ValveBiped.Bip01_L_Thigh" 0.0 "ValveBiped.Bip01_R_Thigh" 0.0 
+$weightlist fullspinenohead "ValveBiped.Bip01_Pelvis" 1.0 "ValveBiped.Bip01_L_Clavicle" 0.0 "ValveBiped.Bip01_R_Clavicle" 0.0 "ValveBiped.Bip01_L_Thigh" 0.0 "ValveBiped.Bip01_R_Thigh" 0.0 "ValveBiped.Bip01_Head1" 0.0
+$weightlist upperspine "ValveBiped.Bip01_Pelvis" 1.0 "ValveBiped.Bip01_R_Thigh" 0.0 "ValveBiped.Bip01_L_Thigh" 0.0 "ValveBiped.Bip01_L_Clavicle" 0.0 "ValveBiped.Bip01_R_Clavicle" 0.0
+$weightlist upperspinenohead "ValveBiped.Bip01_Pelvis" 1.0 "ValveBiped.Bip01_R_Thigh" 0.0 "ValveBiped.Bip01_L_Thigh" 0.0 "ValveBiped.Bip01_L_Clavicle" 0.0 "ValveBiped.Bip01_R_Clavicle" 0.0 "ValveBiped.Bip01_Head1" 0.0
+
+$ikautoplaylock rfoot 1.0 0.1
+$ikautoplaylock lfoot 1.0 0.1
+
+$pushd "..\..\..\"
+
+$animation a_pose_neutral "male_animations\body_poses_lean" frames 0 0
+
+$animation a_body_rot "male_animations\body_poses_lean" frame 0 0 noanimation
+$animation a_body_rot_z_rt "male_animations\body_poses_lean" frame 58 58 subtract a_pose_neutral 0 weightlist fullspinenohead 
+$animation a_body_rot_z_lt "male_animations\body_poses_lean" frame 67 67 subtract a_pose_neutral 0 weightlist fullspinenohead 
+$animation a_spine_rot "male_animations\body_poses_lean" frame 0 0 noanimation
+$animation a_spine_rot_z_rt "male_animations\body_poses_lean" frame 88 88 subtract a_pose_neutral 0 weightlist upperspinenohead
+$animation a_spine_rot_z_lt "male_animations\body_poses_lean" frame 96 96 subtract a_pose_neutral 0 weightlist upperspinenohead
+$animation a_head_rot "male_animations\body_poses_lean" frame 0 0 noanimation
+$animation a_head_rot_lt "male_animations\body_poses_lean" frame 97 97 subtract a_pose_neutral 0 weightlist upperspine 
+$animation a_head_rot_rt "male_animations\body_poses_lean" frame 98 98 subtract a_pose_neutral 0 weightlist upperspine 
+$animation a_head_rot_dwn "male_animations\body_poses_lean" frame 101 101 subtract a_pose_neutral 0 weightlist upperspine 
+$animation a_head_rot_up "male_animations\body_poses_lean" frame 102 102 subtract a_pose_neutral 0 weightlist upperspine 
+$animation a_head_rot_z_rt "male_animations\body_poses_lean" frame 104 104 subtract a_pose_neutral 0 weightlist upperspine 
+$animation a_head_rot_z_lt "male_animations\body_poses_lean" frame 106 106 subtract a_pose_neutral 0 weightlist upperspine 
+
+$animation a_spine_rot_up_rt "male_animations\body_poses_lean" frame 18 18 subtract a_pose_neutral 0 weightlist UpperbodyReplaceSpineRot
+$animation a_spine_rot_up_lt "male_animations\body_poses_lean" frame 24 24 subtract a_pose_neutral 0 weightlist UpperbodyReplaceSpineRot
+
+$popd
+
+$sequence body_rot_z { 
+	a_body_rot_z_lt a_body_rot a_body_rot_z_rt 
+	blendref a_pose_neutral
+	blendcenter a_body_rot
+	calcblend body_yaw "forward" ZR 
+	delta 
+	//autoplay 
+	hidden
+}
+
+$sequence spine_rot_z { 
+	a_spine_rot_z_lt a_spine_rot a_spine_rot_z_rt 
+	blendwidth 3
+	blendcenter a_spine_rot 
+	blend spine_yaw -130 130	
+	autoplay 
+	delta
+	hidden
+}
+
+$sequence spine_rot_x {
+	a_spine_rot_up_lt a_spine_rot a_spine_rot_up_rt 	
+	blendwidth 3
+	blendcenter a_spine_rot 
+	blend spine_pitch -30 30	
+	autoplay 
+	delta
+	hidden
+}
+
+
+$sequence head_rot_z { 
+	a_head_rot_z_lt a_head_rot a_head_rot_z_rt 
+	blendref a_pose_neutral
+	blendcenter a_head_rot 
+	calcblend head_yaw "forward" ZR 
+	delta 
+	autoplay 
+	hidden
+}
+
+$sequence head_rot_y { 
+	a_head_rot_dwn a_head_rot a_head_rot_up 
+	blendref a_pose_neutral
+	blendcenter a_head_rot 
+	calcblend head_pitch "forward" YR 
+	delta 
+	autoplay 
+	hidden
+}
+
+$sequence head_rot_x { 
+	a_head_rot_lt a_head_rot a_head_rot_rt
+	blendref a_pose_neutral
+	blendcenter a_head_rot 
+	calcblend head_roll "forward" XR 
+	delta 
+	autoplay 
+	hidden
+}

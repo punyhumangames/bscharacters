@@ -1,0 +1,11 @@
+$sequence mm_judgement_01 anim_mm_judgement_01 {	
+	fps 5
+	snap
+	alignto reference
+}
+
+$sequence mm_phalanx_01 anim_mm_phalanx_01 {
+	fps 5
+	snap
+	alignto reference
+}

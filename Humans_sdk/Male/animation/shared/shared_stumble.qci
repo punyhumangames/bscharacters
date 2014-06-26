@@ -1,0 +1,39 @@
+	$animation stumble_zero "anim_stumble_light_zero" { fps 20  }
+	$animation stumble_forward "anim_stumble_forward" { fps 20 LX LY  }
+	$animation stumble_forward_right "anim_stumble_forward_right" { fps 20 LX LY  }
+	$animation stumble_forward_left "anim_stumble_forward_left" { fps 20 LX LY  }
+	$animation stumble_back "anim_stumble_back" { fps 20 LX LY  }
+	$animation stumble_back_right "anim_stumble_back_right" { fps 20 LX LY  }
+	$animation stumble_back_left "anim_stumble_back_left" { fps 20 LX LY  }
+	$animation stumble_right "anim_stumble_right" { fps 20 LX LY  }
+	$animation stumble_left "anim_stumble_left" { fps 20 LX LY  }
+
+	$sequence stumble_heavy {
+		stumble_forward_left stumble_forward stumble_forward_right
+		stumble_left stumble_zero stumble_right 
+		stumble_back_left stumble_back stumble_back_right 
+		blendwidth 3 blend move_y -1 1 blend move_x 1 -1 loop
+		ACT_BB_STUMBLE_HEAVY 1
+		LX LY
+		{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	}
+
+	$animation stumble_light_zero "anim_stumble_light_zero" { fps 24  }
+	$animation stumble_light_forward "anim_stumble_light_forward" { fps 24 LX LY  }
+	$animation stumble_light_forward_right "anim_stumble_light_forward_right" { fps 24 LX LY  }
+	$animation stumble_light_forward_left "anim_stumble_light_forward_left" { fps 24 LX LY  }
+	$animation stumble_light_back "anim_stumble_light_back" { fps 24 LX LY  }
+	$animation stumble_light_back_right "anim_stumble_light_back_right" { fps 24 LX LY  }
+	$animation stumble_light_back_left "anim_stumble_light_back_left" { fps 24 LX LY  }
+	$animation stumble_light_right "anim_stumble_light_right" { fps 24 LX LY  }
+	$animation stumble_light_left "anim_stumble_light_left" { fps 24 LX LY  }
+
+	$sequence stumble {
+		stumble_light_forward_left stumble_light_forward stumble_light_forward_right
+		stumble_light_left stumble_light_zero stumble_light_right 
+		stumble_light_back_left stumble_light_back stumble_light_back_right 
+		blendwidth 3 blend move_y -1 1 blend move_x 1 -1 loop
+		ACT_BB_STUMBLE 1
+		LX LY
+		{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	}	

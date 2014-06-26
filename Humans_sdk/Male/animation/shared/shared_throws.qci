@@ -1,0 +1,151 @@
+//-----------------
+//	Deaths
+//-----------------
+
+$sequence grab anim_grab {
+	ACT_BB_GRAB 1 	
+	fps 24
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 24	LX
+	{ event AE_CL_PLAYCHARACTERSOUND			6	".B_Attack" }	
+	{ event AE_CL_PLAYSOUND						6	"Player_Shared.GrabAttempt" }		
+}
+
+$sequence grab_deflect anim_grab_deflect {
+	ACT_BB_GRAB_DEFLECT 1 	
+	fps 28
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX
+	walkframe 30	LX
+	alignto reference
+	{ event AE_CL_PLAYSOUND						0	"Player_Shared.FallHitGround" }			
+}
+
+
+$sequence throw anim_throw {
+	ACT_BB_THROW 1 	
+	fps 34		
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX
+	walkframe 30	LX		
+	walkframe 35	LX		
+	walkframe 40	LX		
+	walkframe 45	LX		
+	walkframe 50	LX		
+	walkframe 55	LX		
+	walkframe 60	LX		
+	//{ event AE_CL_PLAYSOUND						0	"Blade.PreAttack" }			
+	{ event AE_CL_PLAYSOUND 					12	"Player.BellySlice"	}
+	{ event AE_SCREEN_SHAKE						17	}
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 		17 	"throw_belly_slice start_at_attachment anim_attachment_T" }	
+	{ event AE_BB_DAMAGE_SLICE 					17	}
+	{ event AE_CL_PLAYCHARACTERSOUND			42	".S_Strike" }	
+	{ event AE_CL_PLAYSOUND						42	"Player_Shared.FallHitGround" }		
+}
+
+$sequence throw_reaction anim_throw_reaction {
+	ACT_BB_THROW_REACTION 1 	
+	fps 34
+	walkframe 5		LX LY 
+	walkframe 10	LX LY 
+	walkframe 15	LX LY 
+	walkframe 20	LX LY 
+	walkframe 25	LX LY 
+	walkframe 30	LX LY 
+	walkframe 35	LX LY 
+	walkframe 40	LX LY 	
+	walkframe 45	LX LY 	
+	walkframe 50	LX LY 	
+	walkframe 55	LX LY 	
+	walkframe 60	LX LY 		
+	{ event AE_CL_PLAYSOUND						10	"Player_Shared.Dash_Forward_FX" }
+}
+
+
+/*
+$sequence throw3 anim_throw3 {
+	ACT_BB_THROW_3 1
+	alignto reference
+	fps 29		
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX
+	walkframe 30	LX		
+	{ event AE_CL_PLAYSOUND						0	"Blade.PreAttack" }		
+}
+
+$sequence throw3_reaction anim_throw3_reaction {
+	ACT_BB_THROW_REACTION_3 1
+	alignto reference
+	fps 29
+	walkframe 5		LX LY LZ
+	walkframe 10	LX LY LZ
+	walkframe 15	LX LY LZ
+	walkframe 20	LX LY LZ
+	walkframe 25	LX LY LZ
+	walkframe 30	LX LY LZ
+}
+	
+$sequence throw4 anim_throw4 {
+	ACT_BB_THROW_4 1
+	alignto reference
+	fps 29		
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX
+	walkframe 30	LX		
+	{ event AE_CL_PLAYSOUND						0	"Blade.PreAttack" }		
+}
+
+$sequence throw4_reaction anim_throw4_reaction {
+	ACT_BB_THROW_REACTION_4 1
+	alignto reference
+	fps 29
+	walkframe 5		LX LY LZ
+	walkframe 10	LX LY LZ
+	walkframe 15	LX LY LZ
+	walkframe 20	LX LY LZ
+	walkframe 25	LX LY LZ
+	walkframe 30	LX LY LZ
+	
+}
+
+$sequence throw5 anim_throw5 {
+	ACT_BB_THROW_5 1
+	alignto reference
+	fps 29		
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX
+	walkframe 30	LX		
+	{ event AE_CL_PLAYSOUND						0	"Blade.PreAttack" }		
+}
+
+$sequence throw5_reaction anim_throw5_reaction {
+	ACT_BB_THROW_REACTION_5 1
+	alignto reference
+	fps 29
+	walkframe 5		LX LZ
+	walkframe 10	LX LZ
+	walkframe 15	LX LZ
+	walkframe 20	LX LZ
+	walkframe 25	LX LZ
+	walkframe 30	LX LZ
+	
+}
+*/

@@ -1,0 +1,27 @@
+//-----------------
+//	Parries
+//-----------------
+
+	$animation parry_upper_forward "anim_parry_upper_forward" fps 60 weightlist HipsUpperbodyBlend
+	$animation parry_upper_forward_left "anim_parry_upper_forward_left" fps 60 weightlist HipsUpperbodyBlend
+	$animation parry_upper_left "anim_parry_upper_left" fps 60 weightlist HipsUpperbodyBlend
+	$animation parry_upper_right "anim_parry_upper_right" fps 60 weightlist HipsUpperbodyBlend
+	$animation parry_upper_forward_right "anim_parry_upper_forward_right" fps 60 weightlist HipsUpperbodyBlend
+
+	$sequence parry_upper  {
+		parry_upper_left parry_upper_forward_left parry_upper_forward parry_upper_forward_right parry_upper_right
+		blendwidth 5 blend hit_yaw -180 180			
+		ACT_BB_PARRY_UPPER 1		
+		iklock lfoot 1 0 iklock rfoot 1 0		
+	}
+
+	//	using same smds as stumble except this has no pain sound
+	//	possibly replace this with its own animation later
+	$sequence parry_stumble {
+		stumble_light_forward_left stumble_light_forward stumble_light_forward_right
+		stumble_light_left stumble_light_zero stumble_light_right 
+		stumble_light_back_left stumble_light_back stumble_light_back_right 
+		blendwidth 3 blend move_y -1 1 blend move_x 1 -1 loop
+		ACT_BB_PARRY_STUMBLE 1
+		LX LY
+	}	

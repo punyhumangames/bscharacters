@@ -1,0 +1,821 @@
+$include balanced_attacks.qci
+$include heavy_attacks.qci
+$include reverse_attacks.qci
+$include deaths.qci
+
+//	THESE ARE ATTACKER'S REACTIONS TO A DEFENDER'S BLOCK
+
+//	NORMAL BLOCK REACTIONS
+$sequence normal_block_upper_right "anim_b_normal_blocked_upper_right" {
+	ACT_BB_NORMAL_BLOCK_UPPER_RIGHT 1
+	fps 35
+	snap
+	//looping	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence normal_block_upper_left "anim_b_normal_blocked_upper_left" {
+	ACT_BB_NORMAL_BLOCK_UPPER_LEFT 1
+	fps 35
+	snap
+	//looping	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence normal_block_upper_left_final "anim_b_normal_blocked_upper_left" {
+	ACT_BB_NORMAL_BLOCK_UPPER_LEFT_FINAL 1
+	fps 25
+	snap
+	//looping	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence b_forward_riposte "anim_b_forward_riposte" {
+	ACT_BB_B_FORWARD_RIPOSTE 1
+	fps 30
+	snap
+	//looping	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence b_left_riposte "anim_b_left_riposte" {
+	ACT_BB_B_LEFT_RIPOSTE 1
+	fps 26
+	snap
+	//looping	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence b_right_riposte "anim_b_right_riposte" {
+	ACT_BB_B_RIGHT_RIPOSTE 1
+	fps 26
+	snap
+	//looping	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+
+
+$sequence h_forward_riposte "anim_h_forward_riposte" {
+	ACT_BB_H_FORWARD_RIPOSTE 1
+	fps 30
+	snap
+	//looping	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence h_left_riposte "anim_h_left_riposte" {
+	ACT_BB_H_LEFT_RIPOSTE 1
+	fps 27
+	snap
+	//looping	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence h_right_riposte "anim_b_right_riposte" {
+	ACT_BB_H_RIGHT_RIPOSTE 1
+	fps 27
+	snap
+	//looping	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence r_left_riposte "anim_b_left_riposte" {
+	ACT_BB_R_LEFT_RIPOSTE 1
+	fps 22
+	snap
+	//looping	
+	addlayer reverse_sword		
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence r_right_riposte "anim_b_right_riposte" {
+	ACT_BB_R_RIGHT_RIPOSTE 1
+	fps 22
+	snap
+	//looping	
+	addlayer reverse_sword		
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+
+
+
+//	HIT REACTIONS
+//	Balanced Stance
+$sequence b_reaction_upper "anim_reaction_upper" {
+	ACT_BB_B_REACTION_UPPER 1
+	frames 3 8
+	fps 12
+	snap
+	//looping	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence b_reaction_upper_left "anim_reaction_upper_left" {
+	ACT_BB_B_REACTION_UPPER_LEFT 1
+	frames 3 8
+	fps 12
+	snap
+	//looping	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence b_reaction_upper_right "anim_reaction_upper_right" {
+	ACT_BB_B_REACTION_UPPER_RIGHT 1
+	frames 3 8
+	fps 12
+	snap
+	//looping	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence b_reaction_left "anim_reaction_left" {
+	ACT_BB_B_REACTION_LEFT 1
+	frames 3 8
+	fps 12
+	snap
+	//looping	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence b_reaction_right "anim_reaction_right" {
+	ACT_BB_B_REACTION_RIGHT 1
+	frames 3 8
+	fps 12
+	snap
+	//looping	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence b_reaction_lower "anim_reaction_lower" {
+	ACT_BB_B_REACTION_LOWER 1
+	frames 3 8
+	fps 12
+	snap
+	//looping	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence b_reaction_lower_left "anim_reaction_lower_left" {
+	ACT_BB_B_REACTION_LOWER_LEFT 1
+	frames 3 8
+	fps 12
+	snap
+	//looping	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence b_reaction_lower_right "anim_reaction_lower_right" {
+	ACT_BB_B_REACTION_LOWER_RIGHT 1
+	frames 3 8
+	fps 12
+	snap
+	//looping	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+
+//	Heavy Stance
+$sequence h_reaction_upper "anim_reaction_upper" {
+	ACT_BB_H_REACTION_UPPER 1
+	frames 3 8
+	fps 8
+	snap
+	//looping	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence h_reaction_upper_left "anim_reaction_upper_left" {
+	ACT_BB_H_REACTION_UPPER_LEFT 1
+	frames 3 8
+	fps 8
+	snap
+	//looping	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence h_reaction_upper_right "anim_reaction_upper_right" {
+	ACT_BB_H_REACTION_UPPER_RIGHT 1
+	frames 3 8
+	fps 8
+	snap
+	//looping	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence h_reaction_left "anim_reaction_left" {
+	ACT_BB_H_REACTION_LEFT 1
+	frames 3 8
+	fps 8
+	snap
+	//looping	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence h_reaction_right "anim_reaction_right" {
+	ACT_BB_H_REACTION_RIGHT 1
+	frames 3 8
+	fps 8
+	snap
+	//looping	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence h_reaction_lower "anim_reaction_lower" {
+	ACT_BB_H_REACTION_LOWER 1
+	frames 3 8
+	fps 8
+	snap
+	//looping	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence h_reaction_lower_left "anim_reaction_lower_left" {
+	ACT_BB_H_REACTION_LOWER_LEFT 1
+	frames 3 8
+	fps 8
+	snap
+	//looping	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence h_reaction_lower_right "anim_reaction_lower_right" {
+	ACT_BB_H_REACTION_LOWER_RIGHT 1
+	frames 3 8
+	fps 8
+	snap
+	//looping	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+
+//	Reverse Stance
+$sequence r_reaction_upper "anim_reaction_upper" {
+	ACT_BB_R_REACTION_UPPER 1
+	frames 3 8
+	fps 16
+	snap
+	//looping	
+	addlayer reverse_sword		
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence r_reaction_upper_left "anim_reaction_upper_left" {
+	ACT_BB_R_REACTION_UPPER_LEFT 1
+	frames 3 8
+	fps 16
+	snap
+	//looping	
+	addlayer reverse_sword	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence r_reaction_upper_right "anim_reaction_upper_right" {
+	ACT_BB_R_REACTION_UPPER_RIGHT 1
+	frames 3 8
+	fps 16
+	snap
+	//looping	
+	addlayer reverse_sword		
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence r_reaction_left "anim_reaction_left" {
+	ACT_BB_R_REACTION_LEFT 1
+	frames 3 8
+	fps 16
+	snap
+	//looping	
+	addlayer reverse_sword		
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence r_reaction_right "anim_reaction_right" {
+	ACT_BB_R_REACTION_RIGHT 1
+	frames 3 8
+	fps 16
+	snap
+	//looping	
+	addlayer reverse_sword		
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence r_reaction_lower "anim_reaction_lower" {
+	ACT_BB_R_REACTION_LOWER 1
+	frames 3 8
+	fps 16
+	snap
+	//looping	
+	addlayer reverse_sword		
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence r_reaction_lower_left "anim_reaction_lower_left" {
+	ACT_BB_R_REACTION_LOWER_LEFT 1
+	frames 3 8
+	fps 16
+	snap
+	//looping	
+	addlayer reverse_sword		
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence r_reaction_lower_right "anim_reaction_lower_right" {
+	ACT_BB_R_REACTION_LOWER_RIGHT 1
+	frames 3 8
+	fps 16
+	snap
+	//looping	
+	addlayer reverse_sword		
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+
+
+
+
+
+
+
+/*
+
+// balanced combo attacks
+$animation a_b_combo_1 "anim_b_combo_1" frames 0 50
+$sequence	b_combo_1 {
+	a_b_combo_1
+	ACT_BB_B_COMBO_1 1
+	X Y
+	fps 70
+	//fadein	0.5
+	fadeout 0.4
+
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			15	".B_Attack" }
+//	{ event AE_CL_PLAYSOUND						27	"Weapon_Blade.Balanced" }	
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 10 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 10 "player_slide_dust follow_attachment rfoot" }		
+
+}
+
+$animation a_b_combo_2 "anim_b_combo_2" frames 0 120 alignto a_b_combo_1 numframes 120
+$sequence	b_combo_2 {
+	a_b_combo_2
+	ACT_BB_B_COMBO_2 1
+	X Y
+	fps 70
+	fadeout .4
+
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			10	".B_Attack" }
+//	{ event AE_CL_PLAYSOUND						27	"Weapon_Blade.Balanced" }	
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 10 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 10 "player_slide_dust follow_attachment rfoot" }		
+
+//	this stuff is the flourish at the end of the attack
+	{ event AE_CL_CREATE_SWORD_EFFECT   65 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYSOUND			67	"Weapon_Blade.Balanced" }
+	{ event AE_CL_PLAYSOUND			75	"Weapon_Blade.Balanced" }
+	{ event AE_CL_PLAYSOUND			95	"Weapon_Blade.Balanced" }
+
+}
+
+$animation a_b_combo_3 "anim_b_combo_final" frames 0 50 alignto a_b_combo_2
+$sequence	b_combo_3 {
+	a_b_combo_3
+	ACT_BB_B_COMBO_3 1
+	X Y
+	fps 45
+	fadeout 1.0
+	
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			10	".B_Attack" }
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$animation a_b_combo_4 "anim_b_combo_final" frames 50 108 alignto a_b_combo_3
+$sequence	b_combo_4 {
+	a_b_combo_4
+	ACT_BB_B_COMBO_4 1
+	X Y
+	fps 45
+	fadeout 1.0
+	
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			10	".B_Final" }
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 30 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence	b_left "anim_b_left"{
+	ACT_BB_B_LEFT 1
+	frames 0 85
+	numframes 85
+	X Y
+	fps 70
+
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			10	".B_Attack" }
+//	{ event AE_CL_PLAYSOUND						27	"Weapon_Blade.Balanced" }		
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+
+$sequence	b_right "anim_b_right"{
+	alignto b_left
+	ACT_BB_B_RIGHT 1
+	frames 0 85
+	numframes 85
+	X Y
+	fps 70
+
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			10	".B_Attack" }
+//	{ event AE_CL_PLAYSOUND						27	"Weapon_Blade.Balanced" }		
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+
+
+
+// heavy combo attacks
+$animation a_h_combo_1 "anim_h_combo_1" frames 0 120
+$sequence	h_combo_1 {
+	a_h_combo_1
+	ACT_BB_H_COMBO_1 1
+	X Y
+	fps 95
+	fadeout .4
+
+	{ event AE_CL_CREATE_SWORD_EFFECT 30 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			50	".H_Attack" }
+	
+//	{ event AE_CL_PLAYSOUND						8	"Weapon_Blade.Balanced" }	
+//	{ event AE_CL_PLAYSOUND						55	"Weapon_Blade.Heavy" }
+		
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$animation a_h_combo_2 "anim_h_combo_2" frames 0 120 alignto a_h_combo_1
+$sequence	h_combo_2 {
+	a_h_combo_2
+	ACT_BB_H_COMBO_2 1
+	X Y
+	fps 95
+	fadeout .4
+
+	{ event AE_CL_CREATE_SWORD_EFFECT 40 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			60	".H_Attack" }
+	
+//	{ event AE_CL_PLAYSOUND						8	"Weapon_Blade.Balanced" }	
+//	{ event AE_CL_PLAYSOUND						65	"Weapon_Blade.Heavy" }	
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$animation a_h_combo_3 "anim_h_combo_3" frames 0 120 alignto a_h_combo_1
+$sequence	h_combo_3 {
+	a_h_combo_3
+	ACT_BB_H_COMBO_3 1
+	X Y
+	fps 70
+	fadeout .4
+
+	{ event AE_CL_CREATE_SWORD_EFFECT 40 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			80	".H_Attack" }
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 60 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 60 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$animation a_h_right "anim_h_right" frames 0 50
+$sequence	h_right {
+	a_h_right
+	ACT_BB_H_RIGHT 1
+	X Y
+	fps 40
+	fadeout .4
+
+	{ event AE_CL_CREATE_SWORD_EFFECT 30 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			20	".H_Attack" }
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 30 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 30 "player_slide_dust follow_attachment rfoot" }		
+}
+
+
+$animation a_h_left "anim_h_left" frames 0 70
+$sequence	h_left {
+	a_h_left
+	ACT_BB_H_LEFT 1
+	X Y
+	fps 70
+	fadeout .4
+
+	{ event AE_CL_CREATE_SWORD_EFFECT 16 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			22	".H_Attack" }
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 30 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 30 "player_slide_dust follow_attachment rfoot" }		
+}
+
+
+$animation a_s_strike "anim_s_strike" frames 0 80 numframes 120
+$sequence s_strike {	
+	a_s_strike
+	ACT_BB_S_STRIKE 1
+	X Y
+	snap
+	fadeout 1.4
+	fps 80
+//	{ event AE_BB_HOLDANIMATION		10 }
+//	{ event AE_BB_ATTACKSTEP		29 	"0 0 650"}
+//	{ event AE_BB_RELEASEANIMATION 	100 }
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			10	".S_Strike" }
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_dash_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_dash_dust follow_attachment rfoot" }		
+}
+
+
+// reverse combo attacks
+$animation a_r_combo_1 "anim_r_combo" frames 0 36
+$sequence	r_combo_1 {
+	a_r_combo_1
+	ACT_BB_R_COMBO_1 1
+	X Y
+	fps 80
+	fadeout .4
+	
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			10	".B_Attack" }
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$animation a_r_combo_2 "anim_r_combo" frames 36 67 alignto a_r_combo_1
+$sequence	r_combo_2 {
+	a_r_combo_2
+	ACT_BB_R_COMBO_2 1
+	X Y
+	fps 80
+	fadeout .4
+
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			10	".B_Attack" }
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$animation a_r_combo_3 "anim_r_combo" frames 67 100 alignto a_r_combo_2
+$sequence	r_combo_3 {
+	a_r_combo_3
+	ACT_BB_R_COMBO_3 1
+	X Y
+	fps 80
+	fadeout .4
+	
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			10	"Weapon_Blade.Balanced" }
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$animation a_r_combo_4 "anim_r_combo" frames 100 174 alignto a_r_combo_3
+$sequence	r_combo_4 {
+	a_r_combo_4
+	ACT_BB_R_COMBO_4 1
+	X Y
+	fps 80
+	fadeout .4
+
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			30	".B_Attack" }
+
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$animation a_r_combo_5 "anim_r_combo" frames 164 204 alignto a_r_combo_4
+$sequence	r_combo_5 {
+	a_r_combo_5
+	ACT_BB_R_COMBO_5 1
+	X Y
+	fps 80
+	fadeout .4
+
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			10	".B_Attack" }
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$animation a_r_combo_6 "anim_r_combo" frames 204 350 alignto a_r_combo_5
+$sequence	r_combo_6 {
+	a_r_combo_6
+	ACT_BB_R_COMBO_6 1
+	X Y
+	fps 80
+	fadeout .4
+
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			30	".B_Attack" }
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence	r_left "anim_r_left"{
+	ACT_BB_R_LEFT 1
+	frames 25 85
+	numframes 85
+	alignto a_r_combo_1	
+	X Y
+	fps 80
+	{ event AE_BB_ATTACKSTEP	4	"-340 0 0"}
+	{ event AE_BB_MOVESNAP		30	"-540 0 0"}
+	{ event AE_BB_RELEASEANIMATION 	82 }
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".B_Attack" }
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+
+$sequence	r_right "anim_r_right"{
+	ACT_BB_R_RIGHT 1
+	frames 25 85
+	numframes 85
+	alignto a_r_combo_1	
+	X Y
+	fps 80
+	{ event AE_BB_ATTACKSTEP	4	"340 0 0"}
+	{ event AE_BB_MOVESNAP		30	"540 0 0"}
+	{ event AE_BB_RELEASEANIMATION 	82 }
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "tracer_effect follow_attachment anim_attachment_S" }
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".B_Attack" }
+	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$animation a_h_block1 "anim_h_blocks" frames 0 25
+$sequence h_block1 {	
+	a_h_block1
+	ACT_BB_GESTURE_BLOCKFLINCH 1
+//	weightlist HipsUpperbodyArmsReplace 	
+	snap
+	fadeout 2.0
+	fps 40
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+//	{ event AE_BB_HOLDANIMATION		0 }
+//	{ event AE_BB_RELEASEANIMATION 	5 }
+}
+
+$animation a_h_block2 "anim_h_blocks" frames 30 55 
+$sequence h_block2 {	
+	a_h_block2
+	ACT_BB_GESTURE_BLOCKFLINCH 1
+//	weightlist HipsUpperbodyArmsReplace 
+	snap
+	fadeout 2.0
+	fps 40
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }		
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+//	{ event AE_BB_HOLDANIMATION		0 }
+//	{ event AE_BB_RELEASEANIMATION 	5 }
+}
+
+$animation a_h_block3 "anim_h_blocks" frames 60 85 
+$sequence h_block3 {	
+	a_h_block3
+	ACT_BB_GESTURE_BLOCKFLINCH 1
+//	weightlist HipsUpperbodyArmsReplace 
+	snap
+	fadeout 2.0
+	fps 40
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }			
+//	{ event AE_BB_HOLDANIMATION		0 }
+//	{ event AE_BB_RELEASEANIMATION 	5 }
+}
+
+$animation a_h_block4 "anim_h_blocks" frames 90 115 
+$sequence h_block4 {	
+	a_h_block4
+	ACT_BB_GESTURE_BLOCKFLINCH 1
+//	weightlist HipsUpperbodyArmsReplace 
+	snap
+	fadeout 2.0
+	fps 40
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }			
+//	{ event AE_BB_HOLDANIMATION		0 }
+//	{ event AE_BB_RELEASEANIMATION 	5 }
+}
+
+$animation a_h_blockbreak "anim_h_block_break" frames 0 30 
+$sequence h_block_break {	
+	a_h_blockbreak
+	ACT_BB_GESTURE_BLOCK_BREAK 1
+	snap
+	fadeout 2.0
+	fps 70
+	{ event AE_CL_CREATE_SWORD_EFFECT 0 "tracer_effect follow_attachment anim_attachment_S" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }			
+}
+
+
+$sequence b_flinch_01	"anim_b_flinch_01" {
+//	subtract b_idle 0
+	ACT_BB_GESTURE_FLINCH 1
+//	delta
+	fps 16
+	snap
+	looping	
+	{ event AE_CL_PLAYCHARACTERSOUND			0	".Pain" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+
+
+*/

@@ -1,0 +1,91 @@
+//====================================================
+//
+//	JUDGEMENT SHEATHING
+//
+//====================================================
+
+//	we actually have to animate this bone and it's a unique one
+$definebone "sheathe_attach_hip" "ValveBiped.Bip01_Pelvis" 9.157799 6.544998 9.749900 74.137871 -124.562752 -157.949570 0.000000 -0.000002 0.000000 0.000002 0.000000 0.000005
+
+$Weightlist SheatheHipBlendWeighting {
+	"ValveBiped.Bip01_Pelvis" 0.6
+	"sheathe_attach_hip" 1.0	
+	"ValveBiped.Bip01_Spine"  1.0 
+	"ValveBiped.Bip01_L_Thigh" 0.0 
+	"ValveBiped.Bip01_R_Thigh" 0.0
+	"ValveBiped.Bip01_R_Clavicle" 1.0
+	"ValveBiped.Bip01_R_UpperArm" 1.0
+	"ValveBiped.Bip01_R_Forearm" 1.0
+	"ValveBiped.Bip01_R_Hand" 1.0
+	"ValveBiped.Bip01_L_Clavicle" 1.0
+	"ValveBiped.Bip01_L_UpperArm" 1.0
+	"ValveBiped.Bip01_L_Forearm" 1.0
+	"ValveBiped.Bip01_L_Hand" 1.0
+	"ValveBiped.Anim_Attachment_RH" 1.0
+	"ValveBiped.Anim_Attachment_LH" 1.0	
+	"ValveBiped.Bip01_Neck1" 0.9
+	"ValveBiped.Bip01_Head1" 0.8
+}
+
+$sequence sheathe_back anim_sheathe_back {
+	ACT_BB_SHEATHE_BACK 1
+	weightlist SheatheBackBlendWeighting
+	iklock lfoot 1 0 iklock rfoot 1 0 
+	alignto reference
+	fps 22
+	{ event AE_CL_PLAYSOUND	5 	"Weapon_Blade.Whistle" }	
+	{ event AE_CL_PLAYSOUND	10 	"Weapon_Blade.Whistle" }	
+	{ event AE_CL_PLAYSOUND	20 	"Weapon_Blade.Whistle" }	
+	{ event AE_CL_PLAYSOUND	25 	"Weapon_Blade.Sheathing_Slide" }	
+	{ event AE_CL_PLAYSOUND	34 	"Weapon_Blade.Sheathing_Slam" }	
+}
+
+$sequence unsheathe_back anim_unsheathe_back {
+	ACT_BB_UNSHEATHE_BACK 1
+	weightlist SheatheBackBlendWeighting
+	iklock lfoot 1 0 iklock rfoot 1 0 
+	alignto reference
+	fps 130	
+	{ event AE_CL_PLAYSOUND	20 	"Weapon_Blade.Unsheathe_Draw" }	
+	{ event AE_CL_PLAYSOUND	90 	"Weapon_Blade.Whistle" }		
+}
+
+$sequence unsheathe_back_grip anim_unsheathe_back {
+	ACT_BB_UNSHEATHE_BACK_GRIP 1
+	frames 0 21
+	weightlist SheatheBackBlendWeighting
+	iklock lfoot 1 0 iklock rfoot 1 0 
+	alignto reference
+	fps 130		
+}
+
+$sequence sheathe_hip anim_sheathe_hip {
+	ACT_BB_SHEATHE_HIP 1
+	weightlist SheatheHipBlendWeighting
+	iklock lfoot 1 0 iklock rfoot 1 0 
+	alignto reference
+	fps 22
+	{ event AE_CL_PLAYSOUND	5 	"Weapon_Blade.Whistle" }
+	{ event AE_CL_PLAYSOUND	38 	"Weapon_Blade.Sheathing_Slide" }	
+	{ event AE_CL_PLAYSOUND	45 	"Weapon_Blade.Sheathing_Slam" }					
+}
+
+$sequence unsheathe_hip anim_unsheathe_hip {
+	ACT_BB_UNSHEATHE_HIP 1
+	weightlist SheatheHipBlendWeighting
+	iklock lfoot 1 0 iklock rfoot 1 0 
+	alignto reference
+	fps 130		
+	{ event AE_CL_PLAYSOUND	17 	"Weapon_Blade.Sheathing_Slam" }	
+	{ event AE_CL_PLAYSOUND	45 	"Weapon_Blade.Unsheathe_Draw" }		
+	{ event AE_CL_PLAYSOUND	115	"Weapon_Blade.Whistle" }			
+}
+
+$sequence unsheathe_hip_grip anim_unsheathe_hip {
+	ACT_BB_UNSHEATHE_HIP_GRIP 1
+	frames 0 11
+	weightlist SheatheHipBlendWeighting
+	iklock lfoot 1 0 iklock rfoot 1 0 
+	alignto reference
+	fps 130				
+}

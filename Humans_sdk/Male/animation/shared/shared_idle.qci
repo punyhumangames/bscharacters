@@ -1,0 +1,44 @@
+//-----------------
+//	Reference
+//-----------------
+
+	$sequence reference	"anim_ref" {
+		ACT_BB_REF 1
+	}
+
+//-----------------
+//	Idles
+//-----------------
+
+	$sequence Idle_lower "anim_idle" loop FPS 30 activity ACT_IDLE 1 cmdlist lockfeet
+	
+//-----------------
+//	Idle Turing
+//-----------------	
+
+	$sequence idle_turn_left {
+		anim_idle_turn_left_90
+		activity ACT_BB_IDLE_TURN 1
+		fps 40
+		Weightlist lowerbody
+		LZR
+		loop
+		ikrule lfoot footstep range 3 18 22 21 height $STANDARD_IK_HEIGHT$ usesequence
+		ikrule rfoot footstep range 5 19 21 20 height $STANDARD_IK_HEIGHT$ usesequence
+	}	
+	
+//-----------------
+//	Reverse Stance Sword Flip
+//-----------------
+		
+	$sequence reverse_compare "anim_sword_reversal" frame 0 1
+		
+	$animation reverse_sword_anim "anim_reverse_sword"{
+		subtract reverse_compare 0
+	}
+
+	$sequence reverse_sword "reverse_sword_anim"{
+		frame 0 0
+		delta
+		ACT_REVERSE_SWORD 1
+	}

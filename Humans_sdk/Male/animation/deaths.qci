@@ -1,0 +1,15 @@
+$sequence b_death_stabbed "anim_stabbed" {
+	ACT_BB_DEATH_STABBED 1
+	fps 60
+	snap
+	looping	
+	walkframe 10	LX
+	walkframe 20	LX
+	walkframe 30	LX
+	walkframe 40	LX
+	walkframe 50	LX
+	walkframe 60	LX
+	walkframe 70	LX
+	walkframe 80	LX
+	walkframe 89	LX
+}

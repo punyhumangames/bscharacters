@@ -1,0 +1,137 @@
+//====================================================
+//
+//	PHALANX AIR STANCE IDLE + RUN
+//
+//====================================================
+
+	$sequence a_idle "anim_a_idle_center"{
+		ACT_BB_A_IDLE 1
+		fps 24
+		alignto reference
+		loop
+	}
+	
+	$animation a_a_run_base anim_a_idle_center frame 0 1 loop X Y alignto reference
+	$animation a_air_n anim_a_idle_forward frame 0 1 loop X Y alignto reference
+	$animation a_air_s anim_a_idle_back frame 0 1 loop X Y alignto reference 
+	$animation a_air_w anim_a_idle_left frame 0 1 loop X Y alignto reference
+	$animation a_air_e anim_a_idle_right frame 0 1 loop X Y alignto reference
+	$sequence a_run { 
+		a_air_w a_air_n a_air_e 
+		a_air_w a_a_run_base a_air_e 
+		a_air_w a_air_s a_air_e 
+		blendwidth 3 blend move_y -1 1 blend move_x 1 -1 loop
+		ACT_BB_A_RUN 1
+		alignto reference
+	}
+
+//====================================================
+//
+//	STRING 1
+//
+//====================================================
+
+	//	string 1 charge
+	$sequence a_s1_charge "anim_b_s1_charge"{
+		ACT_BB_A_C1_CHARGE 1
+		alignto reference		
+		fps 90
+		walkframe 36	LX	
+	}
+
+	$animation a_a_s1_t1 "anim_a_s1_t1" frames 0 22
+	$sequence	a_s1_t1 {
+		a_a_s1_t1
+		ACT_BB_A_C1_T1 1
+		fps 30
+		alignto reference	
+		walkframe 5		LX LZ
+		walkframe 10	LX LZ
+		walkframe 15	LX LZ
+		walkframe 20	LX LZ
+		walkframe 23	LX LZ
+
+		{ event AE_CL_PLAYCHARACTERSOUND			4	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				6	"Weapon_Blade.Balanced" }		
+		{ event AE_CL_CREATE_SWORD_EFFECT			4	"follow_attachment anim_attachment_S" }
+	}
+
+
+//====================================================
+//
+//	STRING 2
+//
+//====================================================
+
+	$animation a_a_s2_t1 "anim_a_s2_t1" frames 0 24
+	$sequence	a_s2_t1 {
+		a_a_s2_t1
+		ACT_BB_A_C2_T1 1
+		fps 30
+		alignto reference	
+		walkframe 5		LX LZ
+		walkframe 10	LX LZ
+		walkframe 15	LX LZ
+		walkframe 20	LX LZ		
+		walkframe 24	LX LZ
+
+		{ event AE_CL_PLAYCHARACTERSOUND			6	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				6	"Weapon_Blade.Balanced" }		
+		{ event AE_CL_CREATE_SWORD_EFFECT			6	"follow_attachment anim_attachment_S" }
+		{ event AE_BB_CREATE_TRACEMODEL		6	"models/tracemodels/sword_tracer_stab.mdl 28 1 1.5" }
+	}
+
+
+
+
+//====================================================
+//
+//	LEFT
+//
+//====================================================
+
+	$animation a_a_left_t1 "anim_a_left_t1" frames 0 30
+	$sequence	a_left_t1 {
+		a_a_left_t1
+		ACT_BB_A_LEFT_T1 1
+		fps 52
+		alignto reference	
+		walkframe 5		LX LY LZ
+		walkframe 10	LX LY LZ
+		walkframe 15	LX LY LZ
+		walkframe 20	LX LY LZ		
+		walkframe 25	LX LY LZ
+		walkframe 30	LX LY LZ
+
+		{ event AE_CL_PLAYCHARACTERSOUND			12	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				12	"Weapon_Blade.Balanced" }		
+		{ event AE_CL_CREATE_SWORD_EFFECT			12	"follow_attachment anim_attachment_S" }
+	}
+
+
+
+//====================================================
+//
+//	RIGHT
+//
+//====================================================
+
+	$animation a_a_right_t1 "anim_a_right_t1" frames 0 30
+	$sequence	a_right_t1 {
+		a_a_right_t1
+		ACT_BB_A_RIGHT_T1 1
+		fps 52
+		alignto reference	
+		walkframe 5		LX LY LZ
+		walkframe 10	LX LY LZ
+		walkframe 15	LX LY LZ
+		walkframe 20	LX LY LZ		
+		walkframe 25	LX LY LZ
+		walkframe 30	LX LY LZ
+
+		{ event AE_CL_PLAYCHARACTERSOUND			12	".B_Attack" }	
+		{ event AE_CL_PLAYWEAPONSOUND				12	"Weapon_Blade.Balanced" }		
+		{ event AE_CL_CREATE_SWORD_EFFECT			12	"follow_attachment anim_attachment_S" }
+	}
+
+

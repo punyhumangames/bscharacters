@@ -1,0 +1,113 @@
+//-----------------
+//	Bows
+//-----------------
+
+$sequence flourish_bow_basic "anim_bow4" {
+	ACT_BB_BOW1 1 	
+	fps 25
+	alignto reference	
+	frames 0 40
+	fadeout 1.0
+	{ event AE_CL_PLAYSOUND						5	"Weapon_Blade.Whistle" }		
+}
+
+//-----------------
+//	Flourishes
+//-----------------
+
+$sequence flourish_balanced "anim_b_flourish" {
+	ACT_BB_B_FLOURISH 1 
+	alignto reference	
+	fps 65	
+	{ event AE_CL_PLAYSOUND			0	"Weapon_Blade.Whistle"}	
+	{ event AE_CL_PLAYSOUND			10	"Weapon_Blade.Whistle"}	
+	{ event AE_CL_PLAYSOUND			30	"Weapon_Blade.Whistle"}	
+}
+
+$sequence flourish_heavy "anim_h_flourish" {
+	//ACT_BB_H_FLOURISH 1 
+	alignto reference	
+	fps 25	
+	{ event AE_CL_PLAYSOUND			5	"Weapon_Blade.Whistle"}	
+	{ event AE_CL_PLAYSOUND			10	"Weapon_Blade.Whistle"}			
+}
+
+$sequence flourish_reverse "anim_r_flourish" {
+	ACT_BB_R_FLOURISH 1 
+	alignto reference	
+	fps 40	
+	{ event AE_CL_PLAYSOUND			0	"Weapon_Blade.Whistle"}	
+	{ event AE_CL_PLAYSOUND			7	"Weapon_Blade.Whistle"}		
+}
+
+//-----------------
+//	Taunts
+//-----------------
+
+$sequence taunt_reverse  "anim_r_taunt" {
+	ACT_BB_R_TAUNT 1 
+	frames 0 140
+	alignto reference
+	fps 60		
+	fadeout 0.4	
+}
+
+$sequence taunt_balanced  "anim_b_taunt" {
+	ACT_BB_B_TAUNT 1 
+	frames 0 101
+	alignto reference	
+	fps 70			
+	fadeout 0.4
+}
+
+$sequence taunt_heavy  "anim_h_taunt" {
+	ACT_BB_H_TAUNT 1 
+	frames 0 150
+	alignto reference	
+	fps 70	
+	fadeout 0.4		
+}
+
+//-----------------
+//	Spray
+//-----------------
+
+$sequence spray  "anim_spray03" {
+	ACT_BB_SPRAY 1 
+	frames 0 36
+	alignto reference
+	fps 30		
+}
+
+
+//-----------------
+//	Sit Anims
+//-----------------
+
+$sequence sit_down  "anim_sit_down" {
+	ACT_BB_SIT_DOWN 1 
+	alignto reference
+	LX LY
+	fps 40		
+}
+
+$sequence sit_idle  "anim_sit_idle" {
+	ACT_BB_SIT_IDLE 1 
+	alignto reference
+	fps 20		
+}
+
+$sequence sit_up  "anim_sit_up" {
+	ACT_BB_SIT_UP 1 
+	alignto reference
+	LX LY	
+	fps 40		
+}
+
+$sequence heart_taunt  "anim_heart_taunt" {
+	ACT_BB_H_FLOURISH 1 
+	alignto reference	
+	fps 30	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 5 "ber_event_valentine_rope follow_attachment anim_attachment_E" }			
+	{ event AE_CL_PLAYSOUND					5	"events.valentine1" }			
+}

@@ -1,0 +1,40 @@
+$sequence landing_forward "anim_landing_forward" {
+	ACT_BB_LAND_FORWARD 1
+	fps 18	
+	weightlist AttackLandBlend	
+	{ event AE_SCREEN_SHAKE						0	 "0.1 1.0 20.0" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }
+	{ event AE_CL_PLAYSOUND 0 "Player_Shared.Attack_Land" }
+}
+
+$sequence landing_rightfootforward "anim_landing_rightfootforward" {
+	ACT_BB_LAND_RIGHTFOOTFORWARD 1
+	fps 18	
+	weightlist AttackLandLeftArmBlend	
+	{ event AE_SCREEN_SHAKE						0	"0.1 1.0 20.0" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }
+	{ event AE_CL_PLAYSOUND 0 "Player_Shared.Attack_Land" }
+}
+
+
+$sequence landing_left "anim_landing_left" {
+	ACT_BB_LAND_LEFT 1
+	fps 18	
+	weightlist AttackLandBlend	
+	{ event AE_SCREEN_SHAKE						0	"0.1 1.0 20.0" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }
+	{ event AE_CL_PLAYSOUND 0 "Player_Shared.Attack_Land" }
+}
+
+$sequence landing_right "anim_landing_right" {
+	ACT_BB_LAND_RIGHT 1
+	fps 18	
+	weightlist AttackLandBlend	
+	{ event AE_SCREEN_SHAKE						0	"0.1 1.0 20.0" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }
+	{ event AE_CL_PLAYSOUND 0 "Player_Shared.Attack_Land" }
+}

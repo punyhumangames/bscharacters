@@ -1,0 +1,110 @@
+//-----------------
+//	Deaths
+//-----------------
+
+$sequence death_belly_slice anim_death_belly_slice {
+	ACT_BB_BELLY_SLICE 1 	
+	fps 50
+	alignto reference		
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX
+	walkframe 30	LX	
+	walkframe 35	LX
+	walkframe 40	LX	
+	walkframe 45	LX			
+	walkframe 50	LX	
+	walkframe 55	LX			
+	walkframe 60	LX	
+	walkframe 65	LX			
+	walkframe 70	LX	
+	walkframe 75	LX			
+	walkframe 80	LX	
+	walkframe 85	LX			
+	walkframe 90	LX	
+	walkframe 95	LX			
+	walkframe 100	LX	
+	walkframe 105	LX			
+	walkframe 110	LX	
+	walkframe 115	LX			
+	walkframe 120	LX	
+	walkframe 125	LX			
+	walkframe 130	LX	
+	walkframe 135	LX			
+	walkframe 140	LX	
+}
+
+$sequence death_belly_slice_side anim_death_belly_slice_side {
+	ACT_BB_BELLY_SLICE_SIDE 1 	
+	fps 50
+	alignto reference		
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX
+	walkframe 30	LX	
+	walkframe 35	LX
+	walkframe 40	LX	
+	walkframe 45	LX			
+	walkframe 50	LX	
+	walkframe 55	LX			
+	walkframe 60	LX	
+	walkframe 65	LX			
+	walkframe 70	LX	
+	walkframe 75	LX			
+	walkframe 80	LX	
+	walkframe 85	LX			
+	walkframe 90	LX	
+}
+
+$sequence death_neck_slice anim_death_neck_slice {
+	ACT_BB_NECK_SLICE 1 	
+	fps 50
+	alignto reference		
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX
+	walkframe 30	LX	
+	walkframe 35	LX
+	walkframe 40	LX	
+	walkframe 45	LX			
+	walkframe 50	LX	
+	walkframe 55	LX			
+	walkframe 60	LX	
+	walkframe 65	LX			
+	walkframe 70	LX	
+	walkframe 75	LX			
+	walkframe 80	LX	
+	walkframe 85	LX			
+	walkframe 90	LX	
+	walkframe 95	LX			
+	walkframe 100	LX	
+	walkframe 105	LX			
+	walkframe 110	LX	
+	walkframe 115	LX			
+	walkframe 120	LX	
+	walkframe 125	LX			
+	walkframe 130	LX	
+	walkframe 135	LX			
+	walkframe 140	LX	
+}
+
+$sequence death_spinning_faceplant anim_death_spinning_faceplant {
+	ACT_BB_SPINNING_FACEPLANT 1 	
+	fps 50
+	alignto reference		
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX
+	walkframe 30	LX	
+	walkframe 35	LX
+	walkframe 40	LX	
+	walkframe 48	LX			
+}

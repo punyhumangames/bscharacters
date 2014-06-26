@@ -1,0 +1,74 @@
+$sequence block_left "anim_block_left_idle"{ 
+	ACT_BB_BLOCK_LEFT 1
+	fps 50
+	alignto reference
+}
+
+$sequence block_left_blocked_upper "anim_block_left_blocked_upper"{ 
+	ACT_BB_BLOCK_LEFT_BLOCKED_UPPER 1
+	fps 30
+	alignto reference
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }		
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence block_right "anim_block_right_idle"{ 
+	ACT_BB_BLOCK_RIGHT 1
+	fps 50
+	alignto reference			
+}
+
+$sequence block_right_blocked_upper "anim_block_right_blocked_upper"{ 
+	ACT_BB_BLOCK_RIGHT_BLOCKED_UPPER 1
+	fps 30
+	alignto reference
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+}
+
+$sequence intercept "anim_intercept"{ 
+	ACT_BB_INTERCEPT 1
+	fps 40
+	alignto Idle_Lower
+	//LX
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 20	LX
+	walkframe 25	LX
+	walkframe 30	LX
+	walkframe 35	LX
+	walkframe 40	LX
+	walkframe 45	LX
+	{ event AE_CL_PLAYCHARACTERSOUND			6	".B_Attack" }	
+	{ event AE_CL_PLAYWEAPONSOUND				6	"Player_Shared.Parry" }		
+}
+
+$animation a_sidewalk_S anim_sidewalk_s startloop 0 LX LY loop alignto Idle_lower fps 40 alignto Idle_Lower frames 0 31
+$animation a_sidewalk_SE anim_sidewalk_se startloop 0 LX LY loop alignto Idle_lower fps 40 alignto Idle_Lower
+$animation a_sidewalk_E anim_sidewalk_e startloop 0 LX LY loop alignto Idle_lower fps 40 alignto Idle_Lower frames 0 31
+$animation a_sidewalk_NE anim_sidewalk_ne startloop 0 LX LY loop alignto Idle_lower fps 40 alignto Idle_Lower
+$animation a_sidewalk_N anim_sidewalk_n startloop 0 LX LY loop alignto Idle_lower fps 40 alignto Idle_Lower frames 0 31
+$animation a_sidewalk_NW anim_sidewalk_nw startloop 0 LX LY loop alignto Idle_lower fps 40 alignto Idle_Lower
+$animation a_sidewalk_W anim_sidewalk_w startloop 0 LX LY loop alignto Idle_lower fps 40 alignto Idle_Lower frames 0 31
+$animation a_sidewalk_SW anim_sidewalk_sw startloop 0 LX LY loop alignto Idle_lower fps 40 	alignto Idle_Lower
+$animation a_sidewalk_Zero "anim_sidewalk_zero"  alignto Idle_lower loop fps 20 frames 0 31
+
+$sequence sidewalk_lower {
+	a_sidewalk_NW a_sidewalk_N a_sidewalk_NE 
+	a_sidewalk_W a_sidewalk_Zero a_sidewalk_E 
+	a_sidewalk_SW a_sidewalk_S a_sidewalk_SE 
+	blendwidth 3 blend move_y -1 1 blend move_x 1 -1 loop
+	ACT_WALK_SIDE 1
+	//{ event 7002 15 "lfoot" }
+	//{ event 7002 4 "lfoot" }
+	//{ event AE_BB_FOOTSTEP_SPLASH	6	"0" }
+	//{ event AE_BB_FOOTSTEP_SPLASH	15	"1" }
+}
+
+$sequence guard_upper "anim_guard_upper" {
+	ACT_BB_GUARD_UPPER 1
+	weightlist UpperBodyReplace
+	fps 40
+	alignto Idle_lower	
+}

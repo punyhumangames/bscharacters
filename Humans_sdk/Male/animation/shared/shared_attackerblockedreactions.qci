@@ -1,0 +1,85 @@
+//====================================================
+//
+//	Some shared reaction animations for hits being blocked
+//
+//====================================================
+
+	$sequence forward_riposte "anim_forward_riposte" {
+		ACT_BB_B_FORWARD_RIPOSTE 1
+		fps 42
+		snap
+		{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+		{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+	}
+
+	$sequence b_left_riposte "anim_b_left_riposte" {
+		ACT_BB_B_LEFT_RIPOSTE 1
+		fps 26
+		snap
+		{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+		{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+	}
+
+	$sequence b_right_riposte "anim_b_right_riposte" {
+		ACT_BB_B_RIGHT_RIPOSTE 1
+		fps 26
+		snap
+		{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+		{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+	}
+
+
+
+	$sequence h_forward_riposte "anim_h_forward_riposte" {
+		ACT_BB_H_FORWARD_RIPOSTE 1
+		fps 30
+		snap
+		{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+		{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+	}
+
+	$sequence h_left_riposte "anim_h_left_riposte" {
+		ACT_BB_H_LEFT_RIPOSTE 1
+		fps 27
+		snap
+		{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+		{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+	}
+
+	$sequence h_right_riposte "anim_b_right_riposte" {
+		ACT_BB_H_RIGHT_RIPOSTE 1
+		fps 27
+		snap	
+		{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+		{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+	}
+
+	$sequence r_left_riposte "anim_b_left_riposte" {
+		ACT_BB_R_LEFT_RIPOSTE 1
+		fps 22
+		snap
+		addlayer reverse_sword		
+		{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+		{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+	}
+
+	$sequence r_right_riposte "anim_b_right_riposte" {
+		ACT_BB_R_RIGHT_RIPOSTE 1
+		fps 22
+		snap
+		addlayer reverse_sword		
+		{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment lfoot" }	
+		{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_slide_dust follow_attachment rfoot" }		
+	}
+
+	$sequence parried_air "anim_parried_air" {
+		ACT_BB_PARRIED_AIR 1
+		fps 26
+		snap
+		walkframe 1 	LX LZ
+		walkframe 5 	LX LZ
+		walkframe 10 	LX LZ
+		walkframe 15 	LX LZ
+		walkframe 20 	LX LZ
+		walkframe 22 	LX LZ			
+	}
