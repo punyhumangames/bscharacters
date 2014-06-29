@@ -8,21 +8,21 @@
 $sequence roll_forward "anim_roll_forward" frames 0 80 {
 	walkframe 0		LX
 	walkframe 5		LX
-	walkframe 10	LX	
+	walkframe 10	LX
 	walkframe 15	LX
-	walkframe 20	LX	
-	walkframe 25	LX	
-	walkframe 30	LX	
-	walkframe 35	LX	
+	walkframe 20	LX
+	walkframe 25	LX
+	walkframe 30	LX
+	walkframe 35	LX
 	walkframe 40	LX
-	walkframe 45	LX	
-	walkframe 50	LX	
-	walkframe 55	LX	
-	walkframe 60	LX	
-	walkframe 65	LX	
-	walkframe 70	LX	
-	walkframe 75	LX	
-	walkframe 80	LX	
+	walkframe 45	LX
+	walkframe 50	LX
+	walkframe 55	LX
+	walkframe 60	LX
+	walkframe 65	LX
+	walkframe 70	LX
+	walkframe 75	LX
+	walkframe 80	LX
 	fps 80
 	ACT_BB_EVADE_N 1
 	{ event AE_CL_PLAYMOVESOUND 11 "Player_Shared.Roll_Side" }
@@ -31,16 +31,16 @@ $sequence roll_forward "anim_roll_forward" frames 0 80 {
 $sequence roll_back "anim_roll_back" frames 0 51 {
 	walkframe 0		LX
 	walkframe 5		LX
-	walkframe 10	LX	
+	walkframe 10	LX
 	walkframe 15	LX
-	walkframe 20	LX	
-	walkframe 25	LX	
-	walkframe 30	LX	
-	walkframe 35	LX	
+	walkframe 20	LX
+	walkframe 25	LX
+	walkframe 30	LX
+	walkframe 35	LX
 	walkframe 40	LX
-	walkframe 45	LX	
-	walkframe 50	LX	
-	walkframe 51	LX	
+	walkframe 45	LX
+	walkframe 50	LX
+	walkframe 51	LX
 	fps 48
 	ACT_BB_EVADE_S 1
 	{ event AE_CL_PLAYMOVESOUND 10 "Player_Shared.Roll_Side" }
@@ -50,21 +50,21 @@ $sequence roll_back "anim_roll_back" frames 0 51 {
 $sequence roll_right "anim_roll_right" frames 0 80 {
 	walkframe 0		LY
 	walkframe 5		LY
-	walkframe 10	LY	
+	walkframe 10	LY
 	walkframe 15	LY
-	walkframe 20	LY	
-	walkframe 25	LY	
-	walkframe 30	LY	
-	walkframe 35	LY	
+	walkframe 20	LY
+	walkframe 25	LY
+	walkframe 30	LY
+	walkframe 35	LY
 	walkframe 40	LY
-	walkframe 45	LY	
-	walkframe 50	LY	
-	walkframe 55	LY	
-	walkframe 60	LY	
-	walkframe 65	LY	
-	walkframe 70	LY	
-	walkframe 75	LY	
-	walkframe 80	LY	
+	walkframe 45	LY
+	walkframe 50	LY
+	walkframe 55	LY
+	walkframe 60	LY
+	walkframe 65	LY
+	walkframe 70	LY
+	walkframe 75	LY
+	walkframe 80	LY
 	fps 80
 	ACT_BB_EVADE_E 1
 	{ event AE_CL_PLAYMOVESOUND 11 "Player_Shared.Roll_Side" }
@@ -74,21 +74,21 @@ $sequence roll_right "anim_roll_right" frames 0 80 {
 $sequence roll_left "anim_roll_left" frames 0 80 {
 	walkframe 0		LY
 	walkframe 5		LY
-	walkframe 10	LY	
+	walkframe 10	LY
 	walkframe 15	LY
-	walkframe 20	LY	
-	walkframe 25	LY	
-	walkframe 30	LY	
-	walkframe 35	LY	
+	walkframe 20	LY
+	walkframe 25	LY
+	walkframe 30	LY
+	walkframe 35	LY
 	walkframe 40	LY
-	walkframe 45	LY	
-	walkframe 50	LY	
-	walkframe 55	LY	
-	walkframe 60	LY	
-	walkframe 65	LY	
-	walkframe 70	LY	
-	walkframe 75	LY	
-	walkframe 80	LY	
+	walkframe 45	LY
+	walkframe 50	LY
+	walkframe 55	LY
+	walkframe 60	LY
+	walkframe 65	LY
+	walkframe 70	LY
+	walkframe 75	LY
+	walkframe 80	LY
 	fps 80
 	ACT_BB_EVADE_W 1
 	{ event AE_CL_PLAYMOVESOUND 11 "Player_Shared.Roll_Side" }
@@ -97,14 +97,14 @@ $sequence roll_left "anim_roll_left" frames 0 80 {
 $sequence b_shuffle_forward "anim_shuffle_forward" {
 	ACT_BB_B_SHUFFLE_FORWARD 1
 	Y
-	fps 32	
+	fps 32
 	walkframe 0		LX
 	walkframe 5		LX
 	walkframe 10	LX
-	walkframe 15	LX	
-	walkframe 17	LX	
+	walkframe 15	LX
+	walkframe 17	LX
 	{ event AE_CL_PLAYSOUND 9 "Player_Shared.WallRun" }
-	{ event AE_CL_CREATE_PARTICLE_EFFECT 4 "player_shuffle follow_origin" }		
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 4 "player_shuffle follow_origin" }
 	fadein 0.05
 	fadeout 0.25
 }
@@ -112,31 +112,31 @@ $sequence b_shuffle_forward "anim_shuffle_forward" {
 $sequence b_shuffle_back "anim_shuffle_back" {
 	ACT_BB_B_SHUFFLE_BACK 1
 	Y
-	fps 32	
+	fps 32
 	walkframe 0		LX
 	walkframe 5		LX
 	walkframe 10	LX
-	walkframe 15	LX	
-	walkframe 17	LX	
+	walkframe 15	LX
+	walkframe 17	LX
 	{ event AE_CL_PLAYSOUND 9 "Player_Shared.WallRun" }
-	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_shuffle follow_origin" }			
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_shuffle follow_origin" }
 	fadein 0.05
-	fadeout 0.25	
+	fadeout 0.25
 }
 
-$sequence b_shuffle_left "anim_shuffle_left" {	
+$sequence b_shuffle_left "anim_shuffle_left" {
 	ACT_BB_B_SHUFFLE_LEFT 1
 	X
 	fps 32
 	walkframe 0		LX LY
 	walkframe 5		LX LY
 	walkframe 10	LX LY
-	walkframe 15	LX LY	
-	walkframe 17	LX LY	
+	walkframe 15	LX LY
+	walkframe 17	LX LY
 	{ event AE_CL_PLAYSOUND 9 "Player_Shared.WallRun" }
-	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_shuffle follow_origin" }			
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_shuffle follow_origin" }
 	fadein 0.05
-	fadeout 0.25		
+	fadeout 0.25
 }
 
 $sequence b_shuffle_right "anim_shuffle_right" {
@@ -146,22 +146,22 @@ $sequence b_shuffle_right "anim_shuffle_right" {
 	walkframe 0		LX LY
 	walkframe 5		LX LY
 	walkframe 10	LX LY
-	walkframe 15	LX LY	
-	walkframe 17	LX LY	
+	walkframe 15	LX LY
+	walkframe 17	LX LY
 	{ event AE_CL_PLAYSOUND 9 "Player_Shared.WallRun" }
-	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_shuffle follow_origin" }			
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 0 "player_shuffle follow_origin" }
 	fadein 0.05
-	fadeout 0.25			
+	fadeout 0.25
 }
 
-$animation wallrun_n "anim_wallrun_forward" { 
+$animation wallrun_n "anim_wallrun_forward" {
 	fps 24
 	walkframe 5		LY LZ
 	walkframe 10	LY LZ
 	walkframe 15	LY LZ
 	walkframe 19	LY LZ
 }
-$animation wallrun_w "anim_wallrun_left" { 
+$animation wallrun_w "anim_wallrun_left" {
 	fps 24
 	walkframe 5		LY LZ
 	walkframe 10	LY LZ
@@ -169,7 +169,7 @@ $animation wallrun_w "anim_wallrun_left" {
 	walkframe 19	LY LZ
 }
 
-$animation wallrun_e "anim_wallrun_right" { 
+$animation wallrun_e "anim_wallrun_right" {
 	fps 24
 	walkframe 5		LY LZ
 	walkframe 10	LY LZ
@@ -186,17 +186,17 @@ $sequence wallrun {
 	ACT_BB_WALLRUN 1
 	{ event AE_CL_PLAYSOUND 0 "Player_Shared.WallRun" }
 	{ event AE_CL_PLAYSOUND 9 "Player_Shared.WallRun" }
-	{ event AE_CL_PLAYSOUND 15 "Player_Shared.WallRun" }	
+	{ event AE_CL_PLAYSOUND 15 "Player_Shared.WallRun" }
 }
 
-$animation wallflip_n "anim_wallflip_forward" { 
+$animation wallflip_n "anim_wallflip_forward" {
 	fps 16
 	walkframe 5		LX LY LZ
 	walkframe 8		LX LY LZ
-	align wallrun_n y z 19 0	
+	align wallrun_n y z 19 0
 }
 
-$animation wallflip_w "anim_wallflip_left" { 
+$animation wallflip_w "anim_wallflip_left" {
 	fps 16
 	walkframe 5		LX LY LZ
 	walkframe 8		LX LY LZ
@@ -204,11 +204,11 @@ $animation wallflip_w "anim_wallflip_left" {
 	rotateto 45
 }
 
-$animation wallflip_e "anim_wallflip_right" { 
+$animation wallflip_e "anim_wallflip_right" {
 	fps 16
 	walkframe 5		LX LY LZ
 	walkframe 8		LX LY LZ
-	align wallrun_w y z 19 0	
+	align wallrun_w y z 19 0
 	rotateto -45
 }
 
@@ -237,4 +237,20 @@ $sequence vault "anim_vault" {
 	walkframe 1 LX
 	walkframe 34 LX
 	{ event AE_CL_PLAYSOUND 11 "Player_Shared.Jump" }
+}
+
+$sequence dash "anim_shuffle_forward" {
+	ACT_BB_DASH_N 1
+	Y
+	fps 32
+	walkframe 0		LX
+	walkframe 5		LX
+	walkframe 10	LX
+	walkframe 15	LX
+	walkframe 17	LX
+	{ event AE_CL_PLAYSOUND 9 "Player_Shared.WallRun" }
+	{ event AE_CL_PLAYSOUND 1 "Player_Shared.Dash_Forward_FX" }
+	{ event AE_CL_CREATE_PARTICLE_EFFECT 1 "player_dash follow_origin" }
+	fadein 0.05
+	fadeout 0.25
 }
